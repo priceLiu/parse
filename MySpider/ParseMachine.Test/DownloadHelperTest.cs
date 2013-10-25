@@ -21,7 +21,16 @@ namespace ParseMachine.Test
 
             //HtmlHelper helper = new HtmlHelper();
 
+            //all , page start 1_1 , page end 1_90
             //helper.Download("http://yongche.16888.com/index_1_1.html");
+
+
+            //http://yongche.16888.com/mrzs/index_1_1.html
+            //http://yongche.16888.com/yfzs/index_1_1.html
+            //http://yongche.16888.com/wxzs/index_1_1.html
+            //http://yongche.16888.com/gzzs/index_1_1.html
+            //http://yongche.16888.com/cjzs/index_1_1.html
+            //http://yongche.16888.com/cyp/index_1_1.html
             //http://yongche.16888.com/bszh/index_1_1.html
 
 

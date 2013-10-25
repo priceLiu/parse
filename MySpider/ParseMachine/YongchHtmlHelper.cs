@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ParseMachine
 {
-    public class YongcheHtmlHelper : HtmlHelper
+    public class YongcheHtmlHelper : IArticleHelper
     {
         public List<Article> ParseArticle(string html,string articleXPath)
         {
@@ -48,6 +48,12 @@ namespace ParseMachine
             }
 
             return null;
+        }
+
+
+        public int GetPageSize()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -184,5 +184,11 @@ namespace ParseMachine
         {
             return new List<Article>();
         }
+
+
+        public int GetPageSize()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

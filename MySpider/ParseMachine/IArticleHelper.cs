@@ -9,5 +9,6 @@ namespace ParseMachine
     public interface IArticleHelper
     {
         List<Article> ParseArticle(string html, string articleXPath);
+        int GetPageSize();
     }
 }
