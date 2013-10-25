@@ -54,6 +54,10 @@
       <Project>{e46cb96b-1ac0-49fd-80bd-0a07cbc0200c}</Project>
       <Name>MySpider.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ParseMachine\ParseMachine.csproj">
+      <Project>{e6f7145e-a19b-4eb9-b77e-f300fb9fb190}</Project>
+      <Name>ParseMachine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,27 +9,40 @@ namespace MySpider.Common
 {
     public class FileHelper
     {
-        public string ReadAllText(string targetPath, Encoding encoding)
+        public static string ReadAllText(string targetPath, Encoding encoding)
         {
             return System.IO.File.ReadAllText(targetPath, encoding);
         }
 
         public static bool WriteTo(string content, string targetPath)
         {
+            bool isSuccess = false;
+
             try
             {
                 FileInfo myFile = new FileInfo(targetPath);
-                StreamWriter sw = myFile.CreateText();
 
+                StreamWriter sw = myFile.CreateText();
                 sw.Write(content);
                 sw.Close();
 
-                return true;
+                isSuccess = true;
             }
             catch (Exception ex)
             {
-                return false;
+                throw ex;
             }
+
+            return isSuccess;
+        }
+
+        public static string GenerateFileName(string url)
+        {
+            Uri uri = new Uri(url);
+            string fileName = string.Format("{0}{1}", uri.Host, 
+                                string.IsNullOrEmpty(uri.LocalPath) ? string.Empty : string.Format("_", uri.LocalPath.Replace("/", "")));
+            
+            return fileName;
         }
     }
 }

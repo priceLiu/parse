@@ -8,7 +8,7 @@ namespace MySpider.Model
 {
     public class WebSiteModel
     {
-        public List<string> DownloadUrls
+        public List<UrlModel> DownloadUrls
         {
             get;
             set;

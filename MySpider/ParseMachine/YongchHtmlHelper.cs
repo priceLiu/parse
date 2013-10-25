@@ -1,4 +1,6 @@
 ﻿using HtmlAgilityPack;
+using MySpider.Common;
+using MySpider.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,12 @@ namespace ParseMachine
 {
     public class YongcheHtmlHelper : HtmlHelper, IArticleHelper
     {
+        public static WebSiteModel GetSiteInfo(string filePath)
+        {
+            string content = FileHelper.ReadAllText(filePath, Encoding.Default);
+            return JsonHelper.JsonDeserialize <WebSiteModel>(content);
+        }
+
         public List<Article> ParseArticle(string html,string articleXPath)
         {
             HtmlNodeCollection categoryNodeList = HtmlHelper.GetCategoryNodes(html, articleXPath);

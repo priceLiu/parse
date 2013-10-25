@@ -62,6 +62,16 @@
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MySpider.Common\MySpider.Common.csproj">
+      <Project>{560c9552-23e8-416b-bbbf-00e49fbdce0d}</Project>
+      <Name>MySpider.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MySpider.Model\MySpider.Model.csproj">
+      <Project>{e46cb96b-1ac0-49fd-80bd-0a07cbc0200c}</Project>
+      <Name>MySpider.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

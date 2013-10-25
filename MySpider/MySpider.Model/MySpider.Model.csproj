@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RuleModel.cs" />
+    <Compile Include="UrlModel.cs" />
     <Compile Include="WebSiteModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
