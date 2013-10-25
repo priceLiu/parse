@@ -19,11 +19,12 @@ namespace ParseMachine.Test
             //DownloadHelper download = new DownloadHelper();
             //download.DownloadFromRequest("http://yongche.16888.com/index.html");
 
-            //HtmlHelper helper = new HtmlHelper();
+            string targetPath = "c:\\a.html";
 
+            HtmlHelper helper = new HtmlHelper();
             //all , page start 1_1 , page end 1_90
-            //helper.Download("http://yongche.16888.com/index_1_1.html");
-
+            helper.Download("http://yongche.16888.com/index_1_1.html");
+            helper.SaveTo(helper.M_Html, targetPath);
 
             //http://yongche.16888.com/mrzs/index_1_1.html
             //http://yongche.16888.com/yfzs/index_1_1.html
@@ -35,10 +36,12 @@ namespace ParseMachine.Test
 
 
             YongcheHtmlHelper yongche = new YongcheHtmlHelper();
+            string tempContent = System.IO.File.ReadAllText(targetPath,Encoding.Default);
+            //yongche.ParseArticle(tempContent, "//div[@class='news_list']//dl");
 
-            string tempContent = System.IO.File.ReadAllText(@"C:\test.html",Encoding.Default);
-
-            yongche.ParseArticle(tempContent, "//div[@class='news_list']//dl");
+            
+            
+            int maxSize = yongche.GetPageMaxSize(tempContent, "//div[@class='page']//a");
         }
     }
 }

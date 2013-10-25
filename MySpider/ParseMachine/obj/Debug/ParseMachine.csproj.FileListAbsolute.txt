@@ -12,3 +12,4 @@ E:\github\parse\MySpider\ParseMachine\bin\Debug\HtmlAgilityPack.pdb
 E:\github\parse\MySpider\ParseMachine\bin\Debug\HtmlAgilityPack.xml
 E:\github\parse\MySpider\ParseMachine\obj\Debug\ParseMachine.dll
 E:\github\parse\MySpider\ParseMachine\obj\Debug\ParseMachine.pdb
+E:\github\parse\MySpider\ParseMachine\obj\Debug\ParseMachine.csprojResolveAssemblyReference.cache

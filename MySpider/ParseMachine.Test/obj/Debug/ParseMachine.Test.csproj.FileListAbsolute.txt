@@ -12,8 +12,6 @@ E:\github\parser\MySpider\ParseMachine.Test\obj\Debug\ParseMachine.Test.pdb
 E:\github\parse\MySpider\ParseMachine.Test\bin\Debug\HtmlAgilityPack.dll
 E:\github\parse\MySpider\ParseMachine.Test\bin\Debug\nunit.framework.dll
 E:\github\parse\MySpider\ParseMachine.Test\bin\Debug\ParseMachine.dll
-E:\github\parse\MySpider\ParseMachine.Test\bin\Debug\MyDownloader.Core.dll
-E:\github\parse\MySpider\ParseMachine.Test\bin\Debug\MyDownloader.Extension.dll
 E:\github\parse\MySpider\ParseMachine.Test\bin\Debug\ParseMachine.pdb
 E:\github\parse\MySpider\ParseMachine.Test\bin\Debug\HtmlAgilityPack.pdb
 E:\github\parse\MySpider\ParseMachine.Test\bin\Debug\HtmlAgilityPack.xml

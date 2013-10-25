@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ParseMachine
 {
-    public class YongcheHtmlHelper : IArticleHelper
+    public class YongcheHtmlHelper : HtmlHelper, IArticleHelper
     {
         public List<Article> ParseArticle(string html,string articleXPath)
         {
@@ -51,9 +51,10 @@ namespace ParseMachine
         }
 
 
-        public int GetPageSize()
+        public int GetPageMaxSize(string html, string pageSizeXPath)
         {
-            throw new NotImplementedException();
+            HtmlNodeCollection categoryNodeList = HtmlHelper.GetCategoryNodes(html, pageSizeXPath);
+            return Convert.ToInt16(categoryNodeList[categoryNodeList.Count - 2].InnerHtml);
         }
     }
 }

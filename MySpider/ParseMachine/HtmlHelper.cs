@@ -1,6 +1,8 @@
 ﻿using HtmlAgilityPack;
+using MySpider.Common;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -9,7 +11,7 @@ using System.Web;
 
 namespace ParseMachine
 {
-    public class HtmlHelper : IArticleHelper
+    public class HtmlHelper
     {
         private List<Link> m_links;
         private DownloadHelper m_download;
@@ -144,6 +146,11 @@ namespace ParseMachine
             return m_download.IsGood;
         }
 
+        public bool SaveTo(string content, string targetPath)
+        {
+            return FileHelper.WriteTo(content, targetPath);
+        }
+
         public virtual List<ImgLink> getSpecialImages(string sourceHTML, string labelXPath)
         {
             StringBuilder builder = new StringBuilder();
@@ -178,17 +185,6 @@ namespace ParseMachine
             HtmlNode rootNode = document.DocumentNode;
             HtmlNodeCollection categoryNodeList = rootNode.SelectNodes(articleXPath);
             return categoryNodeList;
-        }
-
-        public List<Article> ParseArticle(string html, string articleXPath)
-        {
-            return new List<Article>();
-        }
-
-
-        public int GetPageSize()
-        {
-            throw new NotImplementedException();
         }
     }
 }
