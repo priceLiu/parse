@@ -33,6 +33,12 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\..\Lib\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="MyDownloader.Core">
+      <HintPath>..\Dll\MyDownloader.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MyDownloader.Extension">
+      <HintPath>..\Dll\MyDownloader.Extension.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -43,14 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Article.cs" />
     <Compile Include="Creater.cs" />
     <Compile Include="DownloadHelper.cs" />
     <Compile Include="HtmlHelper.cs" />
+    <Compile Include="IArticleHelper.cs" />
+    <Compile Include="ILink.cs" />
+    <Compile Include="ImgLink.cs" />
     <Compile Include="IRule.cs" />
     <Compile Include="Link.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RuleCollector.cs" />
+    <Compile Include="Tools.cs" />
+    <Compile Include="YongchHtmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

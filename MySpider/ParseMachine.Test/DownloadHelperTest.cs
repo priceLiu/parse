@@ -19,12 +19,17 @@ namespace ParseMachine.Test
             //DownloadHelper download = new DownloadHelper();
             //download.DownloadFromRequest("http://yongche.16888.com/index.html");
 
-            HtmlHelper helper = new HtmlHelper();
+            //HtmlHelper helper = new HtmlHelper();
 
-            helper.Download("http://yongche.16888.com/index.html");
-            List<Link> items = helper.InnerLinks;
+            //helper.Download("http://yongche.16888.com/index_1_1.html");
+            //http://yongche.16888.com/bszh/index_1_1.html
 
-            helper.getSpecialImages(helper.M_html, "//div[@class='news_list']");
+
+            YongcheHtmlHelper yongche = new YongcheHtmlHelper();
+
+            string tempContent = System.IO.File.ReadAllText(@"C:\test.html",Encoding.Default);
+
+            yongche.ParseArticle(tempContent, "//div[@class='news_list']//dl");
         }
     }
 }

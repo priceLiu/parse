@@ -7,6 +7,8 @@ using HtmlAgilityPack;
 using System.Net;
 using System.IO;
 using System.Text.RegularExpressions;
+using MyDownloader.Core;
+using MyDownloader.Extension.Protocols;
 
 namespace ParseMachine
 {
@@ -216,11 +218,18 @@ namespace ParseMachine
                 }
 
                 HttpWebRequest rqst = (HttpWebRequest)WebRequest.Create(m_uri);
-                rqst.AllowAutoRedirect = true;
-                rqst.MaximumAutomaticRedirections = 3;
-                rqst.UserAgent = "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)";
-                rqst.KeepAlive = true;
-                rqst.Timeout = 10000;
+                rqst.Timeout = 30000;
+                
+                //rqst.AllowAutoRedirect = true;
+                //rqst.MaximumAutomaticRedirections = 3;
+                //rqst.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.0.3705;)";
+                //rqst.KeepAlive = true;
+                //rqst.Method = "GET";
+                //rqst.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+                //rqst.Headers.Add("Accept-Language: en-us,en;q=0.5");
+                //rqst.Headers.Add("Accept-Encoding: gzip,deflate");
+                //rqst.Headers.Add("Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7");
+                //rqst.Referer = m_uri.Host;
 
                 lock (DownloadHelper.webcookies)
                 {
@@ -230,12 +239,13 @@ namespace ParseMachine
                     {
                         CookieContainer cc = new CookieContainer();
                         DownloadHelper.webcookies[m_uri.Host] = cc;
+                        
                         rqst.CookieContainer = cc;
                     }
                 }
 
                 HttpWebResponse rsps = (HttpWebResponse)rqst.GetResponse();
-
+                
                 Stream sm = rsps.GetResponseStream();
                 if (!rsps.ContentType.ToLower().StartsWith("text/") || rsps.ContentLength > 1 << 22)
                 {
@@ -259,19 +269,18 @@ namespace ParseMachine
                         cding = Encoding.Default;
                     }
 
-                    //该处视情况而定 有的需要解码  
                     //m_html = HttpUtility.HtmlDecode(new StreamReader(sm, cding).ReadToEnd());  
                     m_html = new StreamReader(sm, cding).ReadToEnd();
 
                 }
                 else
-                {
-                    //该处视情况而定 有的需要解码  
+                { 
                     //m_html = HttpUtility.HtmlDecode(new StreamReader(sm, cding).ReadToEnd());  
 
                     m_html = new StreamReader(sm, cding).ReadToEnd();
                     Regex regex = new Regex("charset=(?<cding>[^=]+)?\"", RegexOptions.IgnoreCase);
                     string strcding = regex.Match(m_html).Groups["cding"].Value;
+
                     try
                     {
                         cding = Encoding.GetEncoding(strcding);
@@ -280,8 +289,10 @@ namespace ParseMachine
                     {
                         cding = Encoding.Default;
                     }
+
                     byte[] bytes = Encoding.Default.GetBytes(m_html.ToCharArray());
                     m_html = cding.GetString(bytes);
+
                     if (m_html.Split('?').Length > 100)
                     {
                         m_html = Encoding.Default.GetString(bytes);
@@ -314,6 +325,40 @@ namespace ParseMachine
 
             }
             return m_outstr.Length > firstN ? m_outstr.Substring(0, firstN) : m_outstr;
+        }
+
+
+        public static void Down()
+        {
+            ResourceLocation rl = new ResourceLocation();
+            rl.Authenticate = false;
+            rl.Login = string.Empty;
+            rl.Password = string.Empty;
+            rl.URL = "http://www.cnblogs.com/wenyang-rio/archive/2013/01/09/2850893.html";
+
+            string localFile = "c:\\1.html";
+            int segments = 1;
+
+            ProtocolProviderFactory.RegisterProtocolHandler("http", typeof(HttpProtocolProvider));
+            ProtocolProviderFactory.RegisterProtocolHandler("https", typeof(HttpProtocolProvider));
+            ProtocolProviderFactory.RegisterProtocolHandler("ftp", typeof(FtpProtocolProvider));
+
+            rl.BindProtocolProviderType();
+            ResourceLocation[] mirrors = new ResourceLocation[1];
+            mirrors[0] = MyDownloader.Core.ResourceLocation.FromURL(rl.URL,
+                            false,
+                            string.Empty,
+                            string.Empty);
+
+            Downloader download = DownloadManager.Instance.Add(
+                        rl,
+                        mirrors,
+                        localFile,
+                        segments,
+                        false);
+
+
+            download.Start();
         }
     }
 }

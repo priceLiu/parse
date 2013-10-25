@@ -8,6 +8,8 @@ E:\github\parser\MySpider\ParseMachine\obj\Debug\ParseMachine.pdb
 E:\github\parse\MySpider\ParseMachine\bin\Debug\ParseMachine.dll
 E:\github\parse\MySpider\ParseMachine\bin\Debug\ParseMachine.pdb
 E:\github\parse\MySpider\ParseMachine\bin\Debug\HtmlAgilityPack.dll
+E:\github\parse\MySpider\ParseMachine\bin\Debug\MyDownloader.Core.dll
+E:\github\parse\MySpider\ParseMachine\bin\Debug\MyDownloader.Extension.dll
 E:\github\parse\MySpider\ParseMachine\bin\Debug\HtmlAgilityPack.pdb
 E:\github\parse\MySpider\ParseMachine\bin\Debug\HtmlAgilityPack.xml
 E:\github\parse\MySpider\ParseMachine\obj\Debug\ParseMachine.dll

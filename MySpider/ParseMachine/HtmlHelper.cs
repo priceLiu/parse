@@ -9,10 +9,12 @@ using System.Web;
 
 namespace ParseMachine
 {
-    public class HtmlHelper
+    public class HtmlHelper : IArticleHelper
     {
         private List<Link> m_links;
-        private DownloadHelper download;
+        private DownloadHelper m_download;
+        private string m_imgXPath = "//img";
+        private string m_srcXPath = "//src";
 
         #region 属性
 
@@ -28,7 +30,7 @@ namespace ParseMachine
             {
                 if (m_links.Count == 0)
                 {
-                    getLinks();
+                    //getLinks();
                 }
 
                 return m_links;
@@ -53,14 +55,14 @@ namespace ParseMachine
         {
             get
             {
-                return download.Title;
+                return m_download.Title;
             }
         }
-        public string M_html
+        public string M_Html
         {
             get
             {
-                return download.M_html;
+                return m_download.M_html;
             }
         }
 
@@ -72,7 +74,7 @@ namespace ParseMachine
         {
             get
             {
-                return download.Context;
+                return m_download.Context;
             }
         }
 
@@ -83,7 +85,7 @@ namespace ParseMachine
         {
             get
             {
-                return download.PageSize; ;
+                return m_download.PageSize; ;
             }
         }
 
@@ -94,7 +96,7 @@ namespace ParseMachine
         {
             get
             {
-                return download.IsGood;
+                return m_download.IsGood;
             }
         }
         /// <summary>  
@@ -104,7 +106,7 @@ namespace ParseMachine
         {
             get
             {
-                return download.Host;
+                return m_download.Host;
             }
         }
 
@@ -120,6 +122,8 @@ namespace ParseMachine
                 return null;
             }
         }
+
+        
         #endregion
 
         public HtmlHelper()
@@ -129,120 +133,56 @@ namespace ParseMachine
 
         public bool Download(string downloadUrl)
         {
-            download = new DownloadHelper();
-            download.DownloadFromRequest(Uri.UnescapeDataString(downloadUrl));
+            m_download = new DownloadHelper();
+            m_download.DownloadFromRequest(Uri.UnescapeDataString(downloadUrl));
 
             if (IsGood)
             {
                 URI = new Uri(downloadUrl);
             }
 
-            return download.IsGood;
+            return m_download.IsGood;
         }
 
-        private List<Link> getInnerSiteImages(string html)
+        public virtual List<ImgLink> getSpecialImages(string sourceHTML, string labelXPath)
         {
-            HtmlDocument document = new HtmlDocument();
-            document.LoadHtml(html);
+            StringBuilder builder = new StringBuilder();
+            HtmlNodeCollection categoryNodeList = GetCategoryNodes(sourceHTML, labelXPath);
 
-            HtmlNode rootNode = document.DocumentNode;
-            HtmlNodeCollection categoryNodeList = rootNode.SelectNodes("//img");
-
-            foreach (var item in categoryNodeList)
+            foreach (HtmlNode item in categoryNodeList)
             {
+                builder.Append(item.OuterHtml);
+            }
 
+            return getInnerSiteImages(builder.ToString());
+        }
+
+        private List<ImgLink> getInnerSiteImages(string html)
+        {
+            HtmlNodeCollection categoryNodeList = GetCategoryNodes(html, m_imgXPath);
+
+            foreach (HtmlNode item in categoryNodeList)
+            {
+                ImgLink imgLink = new ImgLink();
+                HtmlNodeCollection srcList = item.SelectNodes(m_srcXPath);
             }
 
             return null;
         }
 
-        public List<Link> getSpecialImages(string html, string customXPath)
+        public static HtmlNodeCollection GetCategoryNodes(string sourceHtml, string articleXPath)
         {
             HtmlDocument document = new HtmlDocument();
-            document.LoadHtml(html);
+            document.LoadHtml(sourceHtml);
 
             HtmlNode rootNode = document.DocumentNode;
-            HtmlNodeCollection categoryNodeList = rootNode.SelectNodes(customXPath);
-
-            StringBuilder outerHtml = new StringBuilder();
-
-            foreach (HtmlNode item in categoryNodeList)
-            {
-                outerHtml.AppendFormat("{0} \r\n",item.OuterHtml);
-            }
-
-            return getInnerSiteImages(outerHtml.ToString());
+            HtmlNodeCollection categoryNodeList = rootNode.SelectNodes(articleXPath);
+            return categoryNodeList;
         }
 
-
-        //TODO: replace this method
-        private List<Link> getSpecialLinksByUrl(string pattern, int count)
+        public List<Article> ParseArticle(string html, string articleXPath)
         {
-            if (m_links.Count == 0)
-            {
-                getLinks();
-            }
-
-            List<Link> SpecialLinks = new List<Link>();
-            List<Link>.Enumerator i;
-            i = m_links.GetEnumerator();
-            int cnt = 0;
-            while (i.MoveNext() && cnt < count)
-            {
-                if (new Regex(pattern, RegexOptions.Multiline | RegexOptions.IgnoreCase).Match(i.Current.NavigateUrl).Success)
-                {
-                    SpecialLinks.Add(i.Current);
-                    cnt++;
-                }
-            }
-            return SpecialLinks;
-        }
-
-        private List<Link> getLinks()
-        {
-            if (m_links.Count == 0)
-            {
-                Regex[] regex = new Regex[4];
-                regex[0] = new Regex(@"<a\shref\s*=""(?<URL>[^""]*).*?>(?<title>[^<]*)</a>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                regex[1] = new Regex("<[i]*frame[^><]+src=(\"|')?(?<url>([^>\"'\\s)])+)(\"|')?[^>]*>", RegexOptions.IgnoreCase);
-                regex[2] = new Regex("<img(?:.*)src=(\"{1}|\'{1})([^\\[^>]+[gif|jpg|jpeg|bmp|bmp|png]*)(\"{1}|\'{1})(?:.*)>", RegexOptions.IgnoreCase);
-                regex[3] = new Regex(@"<script[^>]*?>.*?</script>", RegexOptions.IgnoreCase);
-
-                for (int i = 0; i < 4; i++)
-                {
-                    Match match = regex[i].Match(M_html);
-                    while (match.Success)
-                    {
-                        try
-                        {
-                            string url = HttpUtility.UrlDecode(new Uri(URI, match.Groups["URL"].Value).AbsoluteUri);
-
-                            string text = "";
-
-                            if (i == 0)
-                            {
-                                text = new Regex("(<[^>]+>)|(\\s)|( )|&|\"", RegexOptions.Multiline | RegexOptions.IgnoreCase).Replace(match.Groups["text"].Value, "");
-                            }
-
-                            Link link = new Link();
-                            link.Text = text;
-                            link.NavigateUrl = url;
-                            link.Tag = match.Groups[0].Value.Split(' ')[0].Remove(0, 1);
-                            link.Src = string.Empty;
-
-                            if (link.Tag == "img")
-                            {
-                                link.Src = match.Groups[2].Value;
-                            }
-
-                            m_links.Add(link);
-                        }
-                        catch (Exception ex) { Console.WriteLine(ex.Message); };
-                        match = match.NextMatch();
-                    }
-                }
-            }
-            return m_links;
+            return new List<Article>();
         }
     }
 }
