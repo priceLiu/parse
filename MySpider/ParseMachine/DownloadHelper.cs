@@ -7,8 +7,6 @@ using HtmlAgilityPack;
 using System.Net;
 using System.IO;
 using System.Text.RegularExpressions;
-using MyDownloader.Core;
-using MyDownloader.Extension.Protocols;
 
 namespace ParseMachine
 {
@@ -325,40 +323,6 @@ namespace ParseMachine
 
             }
             return m_outstr.Length > firstN ? m_outstr.Substring(0, firstN) : m_outstr;
-        }
-
-
-        public static void Down()
-        {
-            ResourceLocation rl = new ResourceLocation();
-            rl.Authenticate = false;
-            rl.Login = string.Empty;
-            rl.Password = string.Empty;
-            rl.URL = "http://www.cnblogs.com/wenyang-rio/archive/2013/01/09/2850893.html";
-
-            string localFile = "c:\\1.html";
-            int segments = 1;
-
-            ProtocolProviderFactory.RegisterProtocolHandler("http", typeof(HttpProtocolProvider));
-            ProtocolProviderFactory.RegisterProtocolHandler("https", typeof(HttpProtocolProvider));
-            ProtocolProviderFactory.RegisterProtocolHandler("ftp", typeof(FtpProtocolProvider));
-
-            rl.BindProtocolProviderType();
-            ResourceLocation[] mirrors = new ResourceLocation[1];
-            mirrors[0] = MyDownloader.Core.ResourceLocation.FromURL(rl.URL,
-                            false,
-                            string.Empty,
-                            string.Empty);
-
-            Downloader download = DownloadManager.Instance.Add(
-                        rl,
-                        mirrors,
-                        localFile,
-                        segments,
-                        false);
-
-
-            download.Start();
         }
     }
 }
