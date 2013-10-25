@@ -1,4 +1,5 @@
 ﻿using MySpider.Common;
+using MySpider.Model.Manager;
 using ParseMachine;
 using System;
 using System.Collections.Generic;
@@ -62,7 +63,7 @@ namespace MySpider.Model.Test
 
             string result = JsonHelper.JsonSerializer(model);
             FileHelper.WriteTo(result,"c:\\bb.html");
-            WebSiteModel newModel = YongcheHtmlHelper.GetSiteInfo("c:\\bb.html");
+            WebSiteModel newModel = WebSiteManager.GetSiteInfo("c:\\bb.html");
         }
     }
 }

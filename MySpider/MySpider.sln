@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpider.Model.Test", "MySp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpider.Common", "MySpider.Common\MySpider.Common.csproj", "{560C9552-23E8-416B-BBBF-00E49FBDCE0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpider.Model.Manager", "MySpider.Model.Manager\MySpider.Model.Manager.csproj", "{9233D394-2D13-4FE7-BE3E-4AD8355BADE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{560C9552-23E8-416B-BBBF-00E49FBDCE0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{560C9552-23E8-416B-BBBF-00E49FBDCE0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{560C9552-23E8-416B-BBBF-00E49FBDCE0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9233D394-2D13-4FE7-BE3E-4AD8355BADE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9233D394-2D13-4FE7-BE3E-4AD8355BADE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9233D394-2D13-4FE7-BE3E-4AD8355BADE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9233D394-2D13-4FE7-BE3E-4AD8355BADE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
