@@ -48,6 +48,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MySpider.Common\MySpider.Common.csproj">
+      <Project>{560c9552-23e8-416b-bbbf-00e49fbdce0d}</Project>
+      <Name>MySpider.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MySpider.Model.Manager\MySpider.Model.Manager.csproj">
+      <Project>{9233d394-2d13-4fe7-be3e-4ad8355bade4}</Project>
+      <Name>MySpider.Model.Manager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MySpider.Model\MySpider.Model.csproj">
+      <Project>{e46cb96b-1ac0-49fd-80bd-0a07cbc0200c}</Project>
+      <Name>MySpider.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ParseMachine\ParseMachine.csproj">
       <Project>{e6f7145e-a19b-4eb9-b77e-f300fb9fb190}</Project>
       <Name>ParseMachine</Name>

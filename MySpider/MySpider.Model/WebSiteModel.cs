@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace MySpider.Model
 {
@@ -20,10 +16,23 @@ namespace MySpider.Model
             set;
         }
 
-        public string SourceKeywords
+        public List<string> SourceKeywords
         {
-            get;
-            set;
+            get
+            {
+                List<string> keywords = new List<string>();
+
+                foreach (UrlModel model in DownloadUrls)
+                {
+                    if (!string.IsNullOrEmpty(model.Desc))
+                    {
+                        string item = model.Desc;
+                        keywords.Add(item);
+                    }
+                }
+
+                return keywords;
+            }
         }
 
         public string SourceAddress

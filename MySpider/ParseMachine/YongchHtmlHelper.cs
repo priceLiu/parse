@@ -1,19 +1,15 @@
 ﻿using HtmlAgilityPack;
-using MySpider.Common;
-using MySpider.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MySpider.Model;
 
 namespace ParseMachine
 {
     public class YongcheHtmlHelper : HtmlHelper, IArticleHelper
     {
-        public List<Article> ParseArticle(string html,string articleXPath)
+        public List<Article> ParseArticle(string html,WebSiteModel websiteModel)
         {
-            HtmlNodeCollection categoryNodeList = HtmlHelper.GetCategoryNodes(html, articleXPath);
+            HtmlNodeCollection categoryNodeList = HtmlHelper.GetCategoryNodes(html, websiteModel.Rule.ArticleXPath);
             HtmlDocument document = new HtmlDocument();
             List<Article> articles = new List<Article>();
 
@@ -23,17 +19,17 @@ namespace ParseMachine
                 HtmlNode node = document.DocumentNode;
 
                 Article article = new Article();
-                article.Title = node.SelectNodes("//dt[1]//a[2]")[0].OuterHtml;
-                article.Type = Tools.ConvertType(node.SelectNodes("//dt[1]//a[@class='f_gray']")[0].InnerHtml);
-                article.IsRecommend = node.SelectNodes("//dt[1]//span[@class='ico_j']") != null;
-                article.Summary = node.SelectNodes("//dd[1]//span[1]")[0].OuterHtml;
-                article.Created = Convert.ToDateTime(node.SelectNodes("//dt[1]//span[@class='f_r']")[0].InnerHtml);
+                article.Title = node.SelectNodes(websiteModel.Rule.TitleXPath)[0].OuterHtml;
+                article.Type = Tools.ConvertType(node.SelectNodes(websiteModel.Rule.TypeXPath)[0].InnerHtml);
+                article.IsRecommend = node.SelectNodes(websiteModel.Rule.RecomendXPath) != null;
+                article.Summary = node.SelectNodes(websiteModel.Rule.SummaryXPath)[0].OuterHtml;
+                article.Created = Convert.ToDateTime(node.SelectNodes(websiteModel.Rule.CreatedXPath)[0].InnerHtml);
                 
                 ImgLink img = new ImgLink();
-                img.Src = node.SelectNodes("//dd[1]//img[1]")[0].Attributes["src"].Value;
+                img.Src = node.SelectNodes(websiteModel.Rule.ImageXPath)[0].Attributes["src"].Value;
                 img.NavigateUrl = string.Empty;
-                img.Alt = node.SelectNodes("//dd[1]//img[1]")[0].Attributes["alt"] == null
-                        ? string.Empty : node.SelectNodes("//dd[1]//img[1]")[0].Attributes["alt"].Value;
+                img.Alt = node.SelectNodes(websiteModel.Rule.ImageXPath)[0].Attributes["alt"] == null
+                        ? string.Empty : node.SelectNodes(websiteModel.Rule.ImageXPath)[0].Attributes["alt"].Value;
 
                 article.ImgLink = img;
 
@@ -52,7 +48,6 @@ namespace ParseMachine
             return null;
         }
 
-
         public int GetPageMaxSize(string html, string pageSizeXPath)
         {
             HtmlNodeCollection categoryNodeList = HtmlHelper.GetCategoryNodes(html, pageSizeXPath);
@@ -60,11 +55,3 @@ namespace ParseMachine
         }
     }
 }
-
-/*
-
-                <dt><span class="f_r">2013-10-24</span><a class="f_gray" href="/wxzs/index.html">【维修知识】</a><a href="http://news.16888.com/a/2013/1024/286887.html" target="_blank">路上漏油怎么办?教你十个应急修理方法</a><span class="ico_j"><!-- 推荐图标 --></span></dt>
-                <dd>
-                	<img src="http://image.16888.com/upload/Images/2013/10/2013102410201388301.jpg_120.jpg" onerror="this.src='http://image.16888.com/default120.jpg_120.jpg'">
-                    <span><a href="http://news.16888.com/a/2013/1024/286887.html" target="_blank">阅读全文&gt;&gt;</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      【车主之家用车知识】驾车外出难免会出现一些故障。假如行驶中出现故障或有故障而暂时无零配件供应又需急用的情况，我们不得不采取一些应急的修理方法。现将一些简便而易行的应急修理方法介绍如下：1.油箱损伤机动车在使用时，发现油箱漏油，可将漏油处擦干...</span>
-                </dd>*/

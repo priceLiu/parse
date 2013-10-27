@@ -9,7 +9,7 @@ namespace ParseMachine
 {
     public interface IArticleHelper
     {
-        List<Article> ParseArticle(string html, string articleXPath);
+        List<Article> ParseArticle(string html, WebSiteModel websiteModel);
         int GetPageMaxSize(string html, string pageSizeXPath);
     }
 }
