@@ -28,7 +28,7 @@ namespace ParseMachine.Test
 
 
             //1. write website rule
-            //2. save website info
+            //2. save website info or send it to MQ queue
             List<UrlModel> urls = new List<UrlModel>(){
                 UrlManager.CreateModel("http://yongche.16888.com/mrzs/index_1_1.html","美容知识"),
                 UrlManager.CreateModel("http://yongche.16888.com/yfzs/index_1_1.html","养护知识"),

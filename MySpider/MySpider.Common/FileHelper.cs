@@ -41,5 +41,10 @@ namespace MySpider.Common
             
             return fileName;
         }
+
+        public static void MoveTo(string sourceFileName, string destFileName)
+        {
+            File.Move(sourceFileName, destFileName);
+        }
     }
 }
