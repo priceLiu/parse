@@ -51,6 +51,10 @@
       <Project>{560c9552-23e8-416b-bbbf-00e49fbdce0d}</Project>
       <Name>MySpider.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MySpider.Manager\MySpider.Manager.csproj">
+      <Project>{55df701f-f1b2-48ab-aa0d-d68cc5d6d38a}</Project>
+      <Name>MySpider.Manager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MySpider.Model.Manager\MySpider.Model.Manager.csproj">
       <Project>{9233d394-2d13-4fe7-be3e-4ad8355bade4}</Project>
       <Name>MySpider.Model.Manager</Name>

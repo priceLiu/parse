@@ -16,26 +16,25 @@ namespace MySpider.Manager
     public class CrawlManager
     {
         /// <summary>
-        /// 1. download
+        /// 1. download page
         /// 2. save page
-        /// 3. save data file
-        /// 4. send to MQ 
-        /// 5. move site's file to next step
+        /// 3. send info to MQ 
         /// </summary>
         /// <param name="model"></param>
         /// <param name="?"></param>
         public void Process(WebSiteModel model, string dataFilePath)
         {
-            WebSiteModel newModel = WebSiteManager.GetSiteInfo(dataFilePath);
+            string readyRoot = "c:\\ready\\";
+
             HtmlHelper helper = new HtmlHelper();
+            WebSiteModel newModel = WebSiteManager.GetSiteInfo(dataFilePath);
 
             foreach (UrlModel item in newModel.DownloadUrls)
             {
                 string url = item.Url;
-                string readyRoot = "c:\\";
+                
                 string tmpFileName = string.Format("{0}.html", FileHelper.GenerateFileName(url));
-                string targetPath = string.Format("{0}{1}", readyRoot, tmpFileName);
-                string dataContent = JsonHelper.JsonSerializer(model);
+                string targetPath = string.Format("{0}{1}", readyRoot,  tmpFileName);
 
                 helper.Download(url);
                 bool isSuccess = helper.SaveTo(helper.M_Html, targetPath);
@@ -44,30 +43,27 @@ namespace MySpider.Manager
                 {
                     if (isSuccess)
                     {
-                        FileInfo info = new FileInfo(dataFilePath);
-                        string dataSavePath = string.Format("{0}{1}", readyRoot, info.Name);
-                        
-                        helper.SaveTo(dataContent, dataSavePath);
-                        MSMQManager.InstanceLocalComputer.Send<string>(string.Format("{0},{1}", dataSavePath, targetPath), new BinaryMessageFormatter());
-
-                        string parseRoot = "c:\\parse\\";
-                        MoveFile(targetPath, parseRoot);
+                        string msgContent = string.Format("{0},{1}", dataFilePath, targetPath);
+                        SendMsg(msgContent);
                     }
                 }
                 catch (Exception ex)
                 {
                     LogHelper.WriteLog(ex);
                 }
-                finally
-                {
-                    MSMQManager.InstanceLocalComputer.Dispose();
-                }
             }
+
+            MSMQManager.InstanceLocalComputer.Dispose();
         }
 
-        public void MoveFile(string sourceFileName, string destFileName)
+        private void MoveDataFile(string sourceFileName, string destFileName)
         {
             FileHelper.MoveTo(sourceFileName, destFileName);
+        }
+
+        public void SendMsg(string msgContent)
+        {
+            MSMQManager.InstanceLocalComputer.Send<string>(msgContent, new BinaryMessageFormatter());
         }
     }
 }

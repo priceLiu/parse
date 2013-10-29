@@ -13,11 +13,11 @@ namespace MySpider.Model.Manager
         public static WebSiteModel GetSiteInfo(string filePath)
         {
             string content = FileHelper.ReadAllText(filePath, Encoding.Default);
-            return JsonHelper.JsonDeserialize<WebSiteModel>(content);
+            return JsonHelper.DeserializeSingle<WebSiteModel>(content);
         }
 
         public static WebSiteModel CreateModel(List<UrlModel> downloadUrls, RuleModel rule, 
-                                                string sourceAddress)
+                                                Uri sourceAddress)
         {
             WebSiteModel model = new WebSiteModel();
 

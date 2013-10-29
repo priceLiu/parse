@@ -7,4 +7,3 @@ E:\github\parse\MySpider\MySpider\bin\MySpider.dll
 E:\github\parse\MySpider\MySpider\bin\MySpider.pdb
 E:\github\parse\MySpider\MySpider\obj\Debug\MySpider.dll
 E:\github\parse\MySpider\MySpider\obj\Debug\MySpider.pdb
-E:\github\parse\MySpider\MySpider\obj\Debug\MySpider.csprojResolveAssemblyReference.cache

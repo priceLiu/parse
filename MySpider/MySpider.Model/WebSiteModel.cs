@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MySpider.Model
 {
@@ -35,10 +36,18 @@ namespace MySpider.Model
             }
         }
 
-        public string SourceAddress
+        public Uri SourceAddress
         {
             get;
             set;
+        }
+
+        public string RuleFileName
+        {
+            get
+            {
+                return string.Format("{0}.data", SourceAddress.Host);
+            }
         }
     }
 }

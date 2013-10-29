@@ -49,6 +49,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MySpider.Manager\MySpider.Manager.csproj">
+      <Project>{55df701f-f1b2-48ab-aa0d-d68cc5d6d38a}</Project>
+      <Name>MySpider.Manager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MySpider.MQ.Model\MySpider.MQ.Model.csproj">
       <Project>{f6f524c5-58d5-466c-8911-1d13a34ff3c5}</Project>
       <Name>MySpider.MQ.Model</Name>

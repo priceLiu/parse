@@ -7,6 +7,7 @@ using MySpider.Common;
 using MySpider.Model;
 using MySpider.Model.Manager;
 using NUnit;
+using MySpider.Manager;
 
 namespace ParseMachine.Test
 {
@@ -29,7 +30,7 @@ namespace ParseMachine.Test
 
             //1. write website rule
             //2. save website info or send it to MQ queue
-            List<UrlModel> urls = new List<UrlModel>(){
+            /*List<UrlModel> urls = new List<UrlModel>(){
                 UrlManager.CreateModel("http://yongche.16888.com/mrzs/index_1_1.html","美容知识"),
                 UrlManager.CreateModel("http://yongche.16888.com/yfzs/index_1_1.html","养护知识"),
                 UrlManager.CreateModel("http://yongche.16888.com/gzzs/index_1_1.html","改装知识"),
@@ -44,9 +45,11 @@ namespace ParseMachine.Test
                                                         "//dd[1]//span[1]", "//dd[1]//img[1]", "//dt[1]//span[@class='f_r']");
 
 
-            WebSiteModel model = WebSiteManager.CreateModel(urls, rule, "addr");
+            WebSiteModel model = WebSiteManager.CreateModel(urls, rule, "addr");*/
 
-            string result = JsonHelper.JsonSerializer(model);
+            WebSiteModel model = CreateTestModel();
+
+            string result = JsonHelper.Serializer(model);
             FileHelper.WriteTo(result, "c:\\bb.data");
             
 
@@ -82,6 +85,53 @@ namespace ParseMachine.Test
             List<Article> articles = yongche.ParseArticle(tempContent, parseModel);
 
 
+        }
+
+        [NUnit.Framework.Test]
+        public void CrawTest()
+        {
+            WebSiteModel model = CreateTestModel();
+            CrawlManager manager = new CrawlManager();
+
+            string result = JsonHelper.Serializer(model);
+            FileHelper.WriteTo(result, "c:\\" + model.RuleFileName);
+
+            manager.Process(model, "c:\\" + model.RuleFileName); 
+        }
+
+        private WebSiteModel CreateTestModel()
+        {
+            List<UrlModel> urls = new List<UrlModel>(){
+                UrlManager.CreateModel("http://yongche.16888.com/mrzs/index_1_1.html","美容知识"),
+                UrlManager.CreateModel("http://yongche.16888.com/yfzs/index_1_1.html","养护知识"),
+                UrlManager.CreateModel("http://yongche.16888.com/gzzs/index_1_1.html","改装知识"),
+                UrlManager.CreateModel("http://yongche.16888.com/cjzs/index_1_1.html","车居知识"),
+                UrlManager.CreateModel("http://yongche.16888.com/cyp/index_1_1.html","汽车用品"),
+                UrlManager.CreateModel("http://yongche.16888.com/bszh/index_1_1.html","保险知识"),
+                UrlManager.CreateModel("http://yongche.16888.com/wxzs/index_1_1.html","维修知识")
+            };
+
+            RuleModel rule = RuleManager.CreateModel("//dt[1]//a[2]", "//div[@class='news_list']//dl",
+                                                        "//dt[1]//a[@class='f_gray']", "//dt[1]//span[@class='ico_j']",
+                                                        "//dd[1]//span[1]", "//dd[1]//img[1]", "//dt[1]//span[@class='f_r']");
+
+
+            WebSiteModel model = WebSiteManager.CreateModel(urls, rule, new Uri("http://yongche.16888.com"));
+
+            return model;
+        }
+
+        [NUnit.Framework.Test]
+        public void ParseTest()
+        {
+            ParseThreadMgt mgt = new ParseThreadMgt();
+            mgt.ReceiveMSMQ();
+        }
+
+        [NUnit.Framework.Test]
+        public void CreateTest()
+        {
+            FileHelper.MoveTo(@"c:\yongche.16888.com.data", @"c:\parse\yongche 16888 com\yongche.16888.com.data");
         }
     }
 }

@@ -44,7 +44,25 @@ namespace MySpider.Common
 
         public static void MoveTo(string sourceFileName, string destFileName)
         {
-            File.Move(sourceFileName, destFileName);
+            FileInfo info = new FileInfo(destFileName);
+            CreateDirectory(info.Directory.ToString());
+
+            try
+            {
+                File.Move(sourceFileName, destFileName);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void CreateDirectory(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
         }
     }
 }

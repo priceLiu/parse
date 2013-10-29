@@ -30,10 +30,10 @@ namespace MySpider.Model.Test
                                                         "//dd[1]//span[1]", "//dd[1]//img[1]", "//dt[1]//span[@class='f_r']");
                 
 
-            WebSiteModel model = WebSiteManager.CreateModel(urls, rule,"addr");
+            WebSiteModel model = WebSiteManager.CreateModel(urls, rule,new Uri("http://www.cn100.com"));
 
 
-            string result = JsonHelper.JsonSerializer(model);
+            string result = JsonHelper.Serializer(model);
             FileHelper.WriteTo(result,"c:\\bb.html");
             WebSiteModel newModel = WebSiteManager.GetSiteInfo("c:\\bb.html");
         }

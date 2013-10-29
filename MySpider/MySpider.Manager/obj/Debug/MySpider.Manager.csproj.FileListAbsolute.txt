@@ -1,3 +1,4 @@
+E:\github\parse\MySpider\MySpider.Manager\obj\Debug\MySpider.Manager.csprojResolveAssemblyReference.cache
 E:\github\parse\MySpider\MySpider.Manager\bin\Debug\MySpider.Manager.dll
 E:\github\parse\MySpider\MySpider.Manager\bin\Debug\MySpider.Manager.pdb
 E:\github\parse\MySpider\MySpider.Manager\bin\Debug\MySpider.Common.dll
@@ -5,6 +6,7 @@ E:\github\parse\MySpider\MySpider.Manager\bin\Debug\MySpider.Model.dll
 E:\github\parse\MySpider\MySpider.Manager\bin\Debug\MySpider.Model.Manager.dll
 E:\github\parse\MySpider\MySpider.Manager\bin\Debug\MySpider.MQ.Model.dll
 E:\github\parse\MySpider\MySpider.Manager\bin\Debug\ParseMachine.dll
+E:\github\parse\MySpider\MySpider.Manager\bin\Debug\Newtonsoft.Json.Net35.dll
 E:\github\parse\MySpider\MySpider.Manager\bin\Debug\HtmlAgilityPack.dll
 E:\github\parse\MySpider\MySpider.Manager\bin\Debug\MySpider.Common.pdb
 E:\github\parse\MySpider\MySpider.Manager\bin\Debug\MySpider.Model.Manager.pdb

@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
 
@@ -6,25 +8,19 @@ namespace MySpider.Common
 {
     public class JsonHelper
     {
-        public static T JsonDeserialize<T>(string jsonString)
+        public static string Serializer<T>(T t)
         {
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(T));
-            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(jsonString));
-            T obj = (T)ser.ReadObject(ms);
-
-            return obj;
+            return JsonConvert.SerializeObject(t);
         }
 
-        public static string JsonSerializer<T>(T t)
+        public static T DeserializeSingle<T>(string jsonString)
         {
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(T));
-            MemoryStream ms = new MemoryStream();
-            ser.WriteObject(ms, t);
+            return JsonConvert.DeserializeObject<T>(jsonString);
+        }
 
-            string jsonString = Encoding.UTF8.GetString(ms.ToArray());
-            ms.Close();
-
-            return jsonString;
+        public static List<T> DeserializeObject<T>(string jsonString)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<List<T>>(jsonString);
         }
     }
 }

@@ -1,28 +1,28 @@
-﻿using MySpider.Model;
+﻿using MySpider.Common;
+using MySpider.Model;
 using MySpider.Model.Manager;
 using MySpider.MQ.Model;
 using ParseMachine;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace MySpider.Manager
 {
-    public class ThreadManager : IDisposable
+    public class ParseThreadMgt : IDisposable
     {
         private Thread _receiveMSMQThread = null;
 
-        private static ThreadManager _instance = new ThreadManager();
+        private static ParseThreadMgt _instance = new ParseThreadMgt();
         /// <summary>
         /// 初始化
         /// </summary>
-        public static ThreadManager Instance
+        public static ParseThreadMgt Instance
         {
-            get { return ThreadManager._instance; }
-            set { ThreadManager._instance = value; }
+            get { return ParseThreadMgt._instance; }
+            set { ParseThreadMgt._instance = value; }
         }
 
         public void Start()
@@ -38,12 +38,12 @@ namespace MySpider.Manager
         private void StartReceiveMSMQThread()
         {
             _receiveMSMQThread = new Thread(new ThreadStart(ReceiveMSMQ));
-            _receiveMSMQThread.Name = "ReceiveMSMQThread";
+            _receiveMSMQThread.Name = "ReceiveThread";
             _receiveMSMQThread.IsBackground = true;
             _receiveMSMQThread.Start();
         }
 
-        private void ReceiveMSMQ()
+        public void ReceiveMSMQ()
         {
             object obj = null;
             MSMQManager.InstanceLocalComputer.Create(true);
@@ -55,13 +55,28 @@ namespace MySpider.Manager
                     obj = MSMQManager.InstanceLocalComputer.ReceiveBinaryMsg();
                     string [] fileName = obj.ToString().Split(','); // file[0] data path,  file[1] html path
 
+                    string dataFileName = fileName[0];
+                    string contentFileName = fileName[1];
                     //get website data file
-                    WebSiteModel parseModel = WebSiteManager.GetSiteInfo(fileName[0]);
+                    WebSiteModel parseModel = WebSiteManager.GetSiteInfo(dataFileName);
 
                     //pase page
                     YongcheHtmlHelper yongche = new YongcheHtmlHelper();
-                    string tempContent = System.IO.File.ReadAllText(fileName[1], Encoding.Default);
+                    string tempContent = System.IO.File.ReadAllText(contentFileName, Encoding.UTF8);
                     List<Article> articles = yongche.ParseArticle(tempContent, parseModel);
+
+
+                    string result = JsonHelper.Serializer<List<Article>>(articles);
+
+                    //TODO: save parse data
+
+                    //move to backup path
+                    FileInfo info = new FileInfo(contentFileName);
+                    string parseRoot = "c:\\parse\\";
+                    string parsePath = string.Format("{0}{1}\\", parseRoot, parseModel.SourceAddress.Host.Replace("."," "));
+                    string backupFileName = string.Format("{0}{1}", parsePath, info.Name);
+
+                    MovePaseFile(contentFileName, backupFileName);
                 }
                 catch (Exception ex)
                 {
@@ -71,6 +86,11 @@ namespace MySpider.Manager
 
                 Thread.Sleep(100);
             }
+        }
+
+        private void MovePaseFile(string sourceFileName, string destFileName)
+        {
+            FileHelper.MoveTo(sourceFileName, destFileName);
         }
 
         #region IDisposable Members

@@ -44,6 +44,5 @@ E:\github\parse\MySpider\MySpider.Web.MVC\bin\DotNetOpenAuth.OAuth.Consumer.xml
 E:\github\parse\MySpider\MySpider.Web.MVC\bin\DotNetOpenAuth.OAuth.xml
 E:\github\parse\MySpider\MySpider.Web.MVC\bin\DotNetOpenAuth.OpenId.xml
 E:\github\parse\MySpider\MySpider.Web.MVC\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
-E:\github\parse\MySpider\MySpider.Web.MVC\obj\Debug\MySpider.Web.MVC.csprojResolveAssemblyReference.cache
 E:\github\parse\MySpider\MySpider.Web.MVC\obj\Debug\MySpider.Web.MVC.dll
 E:\github\parse\MySpider\MySpider.Web.MVC\obj\Debug\MySpider.Web.MVC.pdb
