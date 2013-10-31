@@ -72,11 +72,11 @@ namespace MySpider.MQ.Model
         {
             if (isLocalComputer)
             {
-                _path = ConfigurationManager.AppSettings["MSMQName"] ?? @".\private$\CSMSMQ";
+                _path = msmqName;
             }
             else
             {
-                _path = @"FormatName:DIRECT=TCP:192.168.0.244\private$\" + (ConfigurationManager.AppSettings["msmqName"] ?? "CSMSMQ");
+                _path = @"FormatName:DIRECT=TCP:192.168.0.244" + msmqName;
             }
 
             _msmq = new MessageQueue(_path);
