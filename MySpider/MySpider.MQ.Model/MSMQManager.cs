@@ -5,6 +5,7 @@ using System.Messaging;
 using System.Configuration;
 using System.Diagnostics;
 using System.Transactions;
+using MySpider.Constant.Mgt;
 
 namespace MySpider.MQ.Model
 {    
@@ -20,7 +21,7 @@ namespace MySpider.MQ.Model
      
         private static MSMQManager _instanceLocalComputer = new MSMQManager(true);
 
-        //private string AppSetting
+        private string msmqName = AppSetting.Value.MSMQName;
         /// <summary>
         /// 本机消息队列实例
         /// </summary>
@@ -46,13 +47,13 @@ namespace MySpider.MQ.Model
         /// <returns></returns>
         public bool Create(bool transactional)
         {
-            if (MessageQueue.Exists(ConfigurationManager.AppSettings["MSMQName"] ?? @".\private$\CSMSMQ"))
+            if (MessageQueue.Exists(msmqName))
             {
                 return true;
             }
             else
             {
-                if (MessageQueue.Create(ConfigurationManager.AppSettings["MSMQName"] ?? @".\private$\CSMSMQ", transactional) != null)
+                if (MessageQueue.Create(msmqName, transactional) != null)
                 {
                     return true;
                 }
@@ -71,11 +72,11 @@ namespace MySpider.MQ.Model
         {
             if (isLocalComputer)
             {
-                _path = @".\private$\" + (ConfigurationManager.AppSettings["MSMQName"] ?? "CSMSMQ");
+                _path = ConfigurationManager.AppSettings["MSMQName"] ?? @".\private$\CSMSMQ";
             }
             else
             {
-                _path = @"FormatName:DIRECT=TCP:192.168.0.244\private$\" + (ConfigurationManager.AppSettings["MSMQName"] ?? "CSMSMQ");
+                _path = @"FormatName:DIRECT=TCP:192.168.0.244\private$\" + (ConfigurationManager.AppSettings["msmqName"] ?? "CSMSMQ");
             }
 
             _msmq = new MessageQueue(_path);
