@@ -77,7 +77,7 @@ namespace MySpider.Manager
                     FileHelper.CreateDirectory(resultPath);
                     
                     string resultFileName = FileHelper.GenerateResultFileName(contentFileName);
-                    bool isSuccess = FileHelper.WriteTo(result, string.Format("{0}", resultFileName));
+                    bool isSuccess = FileHelper.WriteTo(result, string.Format("{0}\\{1}", resultPath, resultFileName));
 
                     //move to backup path
                     if (isSuccess)
