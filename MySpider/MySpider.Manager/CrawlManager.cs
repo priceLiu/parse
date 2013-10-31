@@ -19,7 +19,7 @@ namespace MySpider.Manager
         /// <param name="?"></param>
         public void Process(WebSiteModel model, string dataFilePath)
         {
-            string readyRoot = "c:\\ready\\";
+            string readyRoot = FileHelper.ReadyRoot;
 
             HtmlHelper helper = new HtmlHelper();
             WebSiteModel newModel = WebSiteManager.GetSiteInfo(dataFilePath);
