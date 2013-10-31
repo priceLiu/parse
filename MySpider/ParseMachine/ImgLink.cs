@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ParseMachine
 {
     public class ImgLink : ILink
     {
+        public class Attributes
+        {
+            public const string ALT = "alt";
+            public const string SRC = "src";
+        }
+
         public string Src
         {
             get;

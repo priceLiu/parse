@@ -17,3 +17,5 @@ settings
 1. key="readyRoot"
 2. key="parseRoot"
 3. key="finishedPath"
+4. key="msmqName"
+5. key="result"

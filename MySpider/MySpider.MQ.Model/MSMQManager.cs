@@ -4,6 +4,7 @@ using System.Text;
 using System.Messaging;
 using System.Configuration;
 using System.Diagnostics;
+using System.Transactions;
 
 namespace MySpider.MQ.Model
 {    
@@ -18,6 +19,8 @@ namespace MySpider.MQ.Model
         private string _path;
      
         private static MSMQManager _instanceLocalComputer = new MSMQManager(true);
+
+        //private string AppSetting
         /// <summary>
         /// 本机消息队列实例
         /// </summary>
@@ -43,13 +46,13 @@ namespace MySpider.MQ.Model
         /// <returns></returns>
         public bool Create(bool transactional)
         {
-            if (MessageQueue.Exists(@".\private$\" + (ConfigurationManager.AppSettings["MSMQName"] ?? "CSMSMQ")))
+            if (MessageQueue.Exists(ConfigurationManager.AppSettings["MSMQName"] ?? @".\private$\CSMSMQ"))
             {
                 return true;
             }
             else
             {
-                if (MessageQueue.Create(@".\private$\" + (ConfigurationManager.AppSettings["MSMQName"] ?? "CSMSMQ"), transactional) != null)
+                if (MessageQueue.Create(ConfigurationManager.AppSettings["MSMQName"] ?? @".\private$\CSMSMQ", transactional) != null)
                 {
                     return true;
                 }

@@ -10,7 +10,7 @@ namespace ParseMachine
     {
         public static ArticleType ConvertType(string chnDesc)
         {
-            ArticleType type = ArticleType.Articles;
+            ArticleType type = ArticleType.Appliance;
 
             switch (chnDesc)
             {

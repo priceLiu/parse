@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpider.Web.MVC", "MySpide
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpider.Manager", "MySpider.Manager\MySpider.Manager.csproj", "{55DF701F-F1B2-48AB-AA0D-D68CC5D6D38A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpider.Constant.Mgt", "MySpider.Constant.Mgt\MySpider.Constant.Mgt.csproj", "{CCEAA949-D18B-4253-BAFA-491ADA43DB64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +92,10 @@ Global
 		{55DF701F-F1B2-48AB-AA0D-D68CC5D6D38A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55DF701F-F1B2-48AB-AA0D-D68CC5D6D38A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55DF701F-F1B2-48AB-AA0D-D68CC5D6D38A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCEAA949-D18B-4253-BAFA-491ADA43DB64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCEAA949-D18B-4253-BAFA-491ADA43DB64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCEAA949-D18B-4253-BAFA-491ADA43DB64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCEAA949-D18B-4253-BAFA-491ADA43DB64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

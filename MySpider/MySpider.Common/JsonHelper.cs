@@ -10,7 +10,12 @@ namespace MySpider.Common
     {
         public static string Serializer<T>(T t)
         {
-            return JsonConvert.SerializeObject(t);
+            return Serializer<T>(t, Formatting.Indented);
+        }
+
+        public static string Serializer<T>(T t, Formatting formatting)
+        {
+            return JsonConvert.SerializeObject(t, formatting);
         }
 
         public static T DeserializeSingle<T>(string jsonString)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySpider.Constant.Mgt;
+using System;
 using System.IO;
 using System.Text;
 
@@ -6,6 +7,14 @@ namespace MySpider.Common
 {
     public class FileHelper
     {
+        public const string RESULT_FILE_EXTENSION = ".result";
+        public const string DOWNLOAD_FILE_EXTENSION = ".html";
+        public const string DATA_EXTENSION = ".data";
+
+        public static string ResultRoot = AppSetting.Value.ResultRoot;
+        public static string ParseRoot = AppSetting.Value.ParseRoot;
+        public static string ReadyRoot = AppSetting.Value.ReadyRoot;
+
         public static string ReadAllText(string targetPath, Encoding encoding)
         {
             return System.IO.File.ReadAllText(targetPath, encoding);
@@ -63,6 +72,11 @@ namespace MySpider.Common
             {
                 Directory.CreateDirectory(path);
             }
+        }
+
+        public static string WriteToResultFile(string content, string sourceFileName)
+        {
+            return string.Empty;
         }
     }
 }

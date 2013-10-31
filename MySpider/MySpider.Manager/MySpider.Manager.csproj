@@ -32,7 +32,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Messaging" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +50,10 @@
     <ProjectReference Include="..\MySpider.Common\MySpider.Common.csproj">
       <Project>{560c9552-23e8-416b-bbbf-00e49fbdce0d}</Project>
       <Name>MySpider.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MySpider.Constant.Mgt\MySpider.Constant.Mgt.csproj">
+      <Project>{cceaa949-d18b-4253-bafa-491ada43db64}</Project>
+      <Name>MySpider.Constant.Mgt</Name>
     </ProjectReference>
     <ProjectReference Include="..\MySpider.Model.Manager\MySpider.Model.Manager.csproj">
       <Project>{9233d394-2d13-4fe7-be3e-4ad8355bade4}</Project>

@@ -6,8 +6,10 @@ using ParseMachine;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Messaging;
 using System.Text;
 using System.Threading;
+using MySpider.Constant.Mgt;
 
 namespace MySpider.Manager
 {
@@ -24,6 +26,8 @@ namespace MySpider.Manager
             get { return ParseThreadMgt._instance; }
             set { ParseThreadMgt._instance = value; }
         }
+
+        public string MSMQName = AppSetting.Value.MSMQName;
 
         public void Start()
         {
@@ -45,15 +49,16 @@ namespace MySpider.Manager
 
         public void ReceiveMSMQ()
         {
-            object obj = null;
-            MSMQManager.InstanceLocalComputer.Create(true);
+            MSMQManager.InstanceLocalComputer.Create(false);
 
             while (true)
             {
+                object obj = null;
+
                 try
                 {
                     obj = MSMQManager.InstanceLocalComputer.ReceiveBinaryMsg();
-                    string [] fileName = obj.ToString().Split(','); // file[0] data path,  file[1] html path
+                    string[] fileName = obj.ToString().Split(','); // file[0] data path,  file[1] html path
 
                     string dataFileName = fileName[0];
                     string contentFileName = fileName[1];
@@ -65,18 +70,75 @@ namespace MySpider.Manager
                     string tempContent = System.IO.File.ReadAllText(contentFileName, Encoding.UTF8);
                     List<Article> articles = yongche.ParseArticle(tempContent, parseModel);
 
-
                     string result = JsonHelper.Serializer<List<Article>>(articles);
 
-                    //TODO: save parse data
+                    FileInfo info = new FileInfo(contentFileName);
+                    string resultPath = string.Format("{0}{1}\\", FileHelper.ResultRoot, parseModel.SourceAddress.Host.Replace(".", " "));
+                    FileHelper.CreateDirectory(resultPath);
+                    string resultFileName = string.Format("{0}{1}", resultPath, info.Name.Replace(info.Extension,FileHelper.RESULT_FILE_EXTENSION));
+                    
+                    bool isSuccess = FileHelper.WriteTo(result, string.Format("{0}", resultFileName));
 
                     //move to backup path
-                    FileInfo info = new FileInfo(contentFileName);
-                    string parseRoot = "c:\\parse\\";
-                    string parsePath = string.Format("{0}{1}\\", parseRoot, parseModel.SourceAddress.Host.Replace("."," "));
-                    string backupFileName = string.Format("{0}{1}", parsePath, info.Name);
+                    if (isSuccess)
+                    {
+                        string parsePath = string.Format("{0}{1}\\", FileHelper.ParseRoot, parseModel.SourceAddress.Host.Replace(".", " "));
+                        string backupFileName = string.Format("{0}{1}", parsePath, info.Name);
 
-                    MovePaseFile(contentFileName, backupFileName);
+                        MovePaseFile(contentFileName, backupFileName);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(string.Format("error : {0}", ex.Message));
+                    LogHelper.WriteLog(string.Format("{0}; \r\n {1} msg = {2}", ex , Environment.NewLine, obj.ToString()));
+                }
+
+                Thread.Sleep(100);
+            }
+        }
+
+        public void ReceiveMSMQByTransaction()
+        {
+            while (true)
+            {
+                try
+                {
+                    using (MessageQueueTransaction transaction = new MessageQueueTransaction())
+                    {
+                        using (MessageQueue someQueue = MessageQueue.Create(MSMQName, true))
+                        {
+                            someQueue.Formatter = new BinaryMessageFormatter();
+                            Message msg = someQueue.Receive(transaction);
+                            object t = msg.Body;
+
+                            string[] fileName = t.ToString().Split(','); // file[0] data path,  file[1] html path
+
+                            string dataFileName = fileName[0];
+                            string contentFileName = fileName[1];
+                            //get website data file
+                            WebSiteModel parseModel = WebSiteManager.GetSiteInfo(dataFileName);
+
+                            //pase page
+                            YongcheHtmlHelper yongche = new YongcheHtmlHelper();
+                            string tempContent = System.IO.File.ReadAllText(contentFileName, Encoding.UTF8);
+                            List<Article> articles = yongche.ParseArticle(tempContent, parseModel);
+
+
+                            string result = JsonHelper.Serializer<List<Article>>(articles);
+
+                            //TODO: save parse data
+
+                            //move to backup path
+                            FileInfo info = new FileInfo(contentFileName);
+                            string parsePath = string.Format("{0}{1}\\", FileHelper.ParseRoot, parseModel.SourceAddress.Host.Replace(".", " "));
+                            string backupFileName = string.Format("{0}{1}", parsePath, info.Name);
+
+                            MovePaseFile(contentFileName, backupFileName);
+                        }
+
+                        transaction.Commit();
+                    }
                 }
                 catch (Exception ex)
                 {

@@ -47,6 +47,12 @@
     <Compile Include="JsonHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MySpider.Constant.Mgt\MySpider.Constant.Mgt.csproj">
+      <Project>{cceaa949-d18b-4253-bafa-491ada43db64}</Project>
+      <Name>MySpider.Constant.Mgt</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

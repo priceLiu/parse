@@ -41,11 +41,16 @@ namespace MySpider.MQ.Model
         {
             try
             {
-                if (!Directory.Exists(filepath)) Directory.CreateDirectory(filepath);
+                if (!Directory.Exists(filepath))
+                {
+                    Directory.CreateDirectory(filepath);
+                }
+
                 string filename = DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
+
                 using (StreamWriter sw = new StreamWriter(filepath + "\\" + filename, true))
                 {
-                    sw.WriteLine("--------------------------------------------");
+                    sw.WriteLine("----------------------------------------------------------------------------------------------------------------------");
                     sw.WriteLine("{0}:{1}\t{2}", DateTime.Now.ToLongTimeString(), DateTime.Now.Millisecond, str);
                     sw.Close();
                 }
@@ -65,10 +70,12 @@ namespace MySpider.MQ.Model
         private static string getErrMsg(Exception ex)
         {
             string errMessage = "";
+
             for (Exception tempException = ex; tempException != null; tempException = tempException.InnerException)
             {
                 errMessage += tempException.Message + Environment.NewLine + Environment.NewLine;
             }
+
             errMessage += ex.ToString();
             return errMessage;
         }

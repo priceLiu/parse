@@ -14,7 +14,6 @@ namespace ParseMachine.Test
     [NUnit.Framework.TestFixture]
     public class DownloadHelperTest
     {
-
         [NUnit.Framework.Test]
         public void Test1()
         {
@@ -83,8 +82,6 @@ namespace ParseMachine.Test
             YongcheHtmlHelper yongche = new YongcheHtmlHelper();
             string tempContent = System.IO.File.ReadAllText(targetPaths[0], Encoding.Default);
             List<Article> articles = yongche.ParseArticle(tempContent, parseModel);
-
-
         }
 
         [NUnit.Framework.Test]

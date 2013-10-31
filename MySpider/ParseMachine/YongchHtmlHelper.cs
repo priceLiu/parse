@@ -23,10 +23,10 @@ namespace ParseMachine
                 article.Created = Convert.ToDateTime(item.SelectNodes(websiteModel.Rule.CreatedXPath)[0].InnerHtml);
                 
                 ImgLink img = new ImgLink();
-                img.Src = item.SelectNodes(websiteModel.Rule.ImageXPath)[0].Attributes["src"].Value;
+                img.Src = item.SelectNodes(websiteModel.Rule.ImageXPath)[0].Attributes[ImgLink.Attributes.SRC.ToString()].Value;
                 img.NavigateUrl = string.Empty;
-                img.Alt = item.SelectNodes(websiteModel.Rule.ImageXPath)[0].Attributes["alt"] == null
-                        ? string.Empty : item.SelectNodes(websiteModel.Rule.ImageXPath)[0].Attributes["alt"].Value;
+                img.Alt = item.SelectNodes(websiteModel.Rule.ImageXPath)[0].Attributes[ImgLink.Attributes.ALT.ToString()] == null
+                        ? string.Empty : item.SelectNodes(websiteModel.Rule.ImageXPath)[0].Attributes[ImgLink.Attributes.ALT.ToString()].Value;
 
                 article.ImgLink = img;
 

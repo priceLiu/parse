@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySpider.Common;
+using System;
 using System.Collections.Generic;
 
 namespace MySpider.Model
@@ -46,7 +47,8 @@ namespace MySpider.Model
         {
             get
             {
-                return string.Format("{0}.data", SourceAddress.Host);
+                return string.Format("{0}{1}", SourceAddress.Host, 
+                                        FileHelper.DATA_EXTENSION);
             }
         }
     }

@@ -4,12 +4,7 @@ using MySpider.Model.Manager;
 using MySpider.MQ.Model;
 using ParseMachine;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MySpider.Manager
 {
@@ -33,7 +28,8 @@ namespace MySpider.Manager
             {
                 string url = item.Url;
                 
-                string tmpFileName = string.Format("{0}.html", FileHelper.GenerateFileName(url));
+                string tmpFileName = string.Format("{0}{1}", FileHelper.GenerateFileName(url), 
+                                                    FileHelper.DOWNLOAD_FILE_EXTENSION);
                 string targetPath = string.Format("{0}{1}", readyRoot,  tmpFileName);
 
                 helper.Download(url);
@@ -63,7 +59,7 @@ namespace MySpider.Manager
 
         public void SendMsg(string msgContent)
         {
-            MSMQManager.InstanceLocalComputer.Send<string>(msgContent, new BinaryMessageFormatter());
+            MSMQManager.InstanceLocalComputer.Send(msgContent, new BinaryMessageFormatter());
         }
     }
 }

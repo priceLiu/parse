@@ -44,6 +44,12 @@
     <Compile Include="WebSiteModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MySpider.Common\MySpider.Common.csproj">
+      <Project>{560c9552-23e8-416b-bbbf-00e49fbdce0d}</Project>
+      <Name>MySpider.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

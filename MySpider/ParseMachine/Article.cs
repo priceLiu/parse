@@ -71,11 +71,11 @@ namespace ParseMachine
 
     public enum ArticleType
     {
-        Maintain = 1,
-        Cosmetology = 2,
-        Repair = 3,
-        Remodel = 4,
-        Safety = 5,
-        Articles = 6
+        Maintain = 1,       //养护
+        Cosmetology = 2,    //美容
+        Repair = 3,         //维修
+        Remodel = 4,        //改装
+        Safety = 5,         //保险
+        Appliance = 6       //用品
     }
 }

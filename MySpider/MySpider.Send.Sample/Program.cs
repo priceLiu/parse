@@ -41,7 +41,7 @@ namespace MySpider.Send.Sample
 
                     //MSMQManager.InstanceLocalComputer.Send(mqIndex);
 
-                    MSMQManager.InstanceLocalComputer.Send<string>(receiveKey, new BinaryMessageFormatter());
+                    MSMQManager.InstanceLocalComputer.Send(receiveKey, new BinaryMessageFormatter());
                 }
                 catch (Exception ex)
                 {
