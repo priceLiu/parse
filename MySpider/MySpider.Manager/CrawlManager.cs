@@ -39,8 +39,11 @@ namespace MySpider.Manager
                 {
                     if (isSuccess)
                     {
-                        string msgContent = string.Format("{0},{1}", dataFilePath, targetPath);
-                        SendMsg(msgContent);
+                        MSMQMsg msg = new MSMQMsg();
+                        msg.RuleFileName = dataFilePath;
+                        msg.DownloadedFileName = targetPath;
+
+                        SendMsg(msg);
                     }
                 }
                 catch (Exception ex)
@@ -57,7 +60,7 @@ namespace MySpider.Manager
             FileHelper.MoveTo(sourceFileName, destFileName);
         }
 
-        public void SendMsg(string msgContent)
+        public void SendMsg<T>(T msgContent)
         {
             MSMQManager.InstanceLocalComputer.Send(msgContent, new BinaryMessageFormatter());
         }

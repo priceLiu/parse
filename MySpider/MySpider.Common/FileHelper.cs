@@ -78,5 +78,25 @@ namespace MySpider.Common
         {
             return string.Empty;
         }
+
+        public static string GenerateResultFileName(string fileName)
+        {
+            FileInfo info = new FileInfo(fileName);
+            string tmp = info.Name.Remove(info.Name.Length - info.Extension.Length);
+
+            return string.Format("{0}{1}", tmp, FileHelper.RESULT_FILE_EXTENSION);
+        }
+
+        public static string GenerateBackupFileName(string fileName, Uri sourceAddress)
+        {
+            FileInfo info = new FileInfo(fileName);
+            string parsePath = string.Format("{0}{1}\\", FileHelper.ParseRoot, sourceAddress.Host.Replace(".", " "));
+            return string.Format("{0}{1}", parsePath, info.Name);
+        }
+
+        public static string GenerateResultPath(Uri sourceAddress)
+        {
+            return string.Format("{0}{1}\\", FileHelper.ResultRoot, sourceAddress.Host.Replace(".", " "));
+        }
     }
 }

@@ -45,6 +45,7 @@
     <Compile Include="LogHelper.cs" />
     <Compile Include="MSMQIndex.cs" />
     <Compile Include="MSMQManager.cs" />
+    <Compile Include="MSMQMsg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

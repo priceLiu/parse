@@ -53,15 +53,14 @@ namespace MySpider.Manager
 
             while (true)
             {
-                object obj = null;
+                MSMQMsg obj = null;
 
                 try
                 {
-                    obj = MSMQManager.InstanceLocalComputer.ReceiveBinaryMsg();
-                    string[] fileName = obj.ToString().Split(','); // file[0] data path,  file[1] html path
+                    obj = MSMQManager.InstanceLocalComputer.ReceiveBinaryMsg() as MSMQMsg;
 
-                    string dataFileName = fileName[0];
-                    string contentFileName = fileName[1];
+                    string dataFileName = obj.RuleFileName;
+                    string contentFileName = obj.DownloadedFileName;
                     //get website data file
                     WebSiteModel parseModel = WebSiteManager.GetSiteInfo(dataFileName);
 
@@ -73,18 +72,17 @@ namespace MySpider.Manager
                     string result = JsonHelper.Serializer<List<Article>>(articles);
 
                     FileInfo info = new FileInfo(contentFileName);
-                    string resultPath = string.Format("{0}{1}\\", FileHelper.ResultRoot, parseModel.SourceAddress.Host.Replace(".", " "));
-                    FileHelper.CreateDirectory(resultPath);
-                    string resultFileName = string.Format("{0}{1}", resultPath, info.Name.Replace(info.Extension,FileHelper.RESULT_FILE_EXTENSION));
+                    string resultPath = FileHelper.GenerateResultPath(parseModel.SourceAddress);
                     
+                    FileHelper.CreateDirectory(resultPath);
+                    
+                    string resultFileName = FileHelper.GenerateResultFileName(contentFileName);
                     bool isSuccess = FileHelper.WriteTo(result, string.Format("{0}", resultFileName));
 
                     //move to backup path
                     if (isSuccess)
                     {
-                        string parsePath = string.Format("{0}{1}\\", FileHelper.ParseRoot, parseModel.SourceAddress.Host.Replace(".", " "));
-                        string backupFileName = string.Format("{0}{1}", parsePath, info.Name);
-
+                        string backupFileName = FileHelper.GenerateBackupFileName(contentFileName, parseModel.SourceAddress);
                         MovePaseFile(contentFileName, backupFileName);
                     }
                 }
