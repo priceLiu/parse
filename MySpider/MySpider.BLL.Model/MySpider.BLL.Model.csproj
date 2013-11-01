@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E46CB96B-1AC0-49FD-80BD-0A07CBC0200C}</ProjectGuid>
+    <ProjectGuid>{30D118F8-C7B3-4B3E-B545-719BE8935761}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MySpider.Model</RootNamespace>
-    <AssemblyName>MySpider.Model</AssemblyName>
+    <RootNamespace>MySpider.BLL.Model</RootNamespace>
+    <AssemblyName>MySpider.BLL.Model</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,14 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IKende.com.core">
-      <HintPath>..\..\plug\Peanut1.0\IKende.com.core.dll</HintPath>
-    </Reference>
-    <Reference Include="Peanut">
-      <HintPath>..\..\plug\Peanut1.0\Peanut.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,15 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RuleModel.cs" />
-    <Compile Include="UrlModel.cs" />
-    <Compile Include="WebSiteModel.cs" />
+    <Compile Include="ArticleModel.cs" />
+    <Compile Include="ImgLinkModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MySpider.Common\MySpider.Common.csproj">
-      <Project>{560c9552-23e8-416b-bbbf-00e49fbdce0d}</Project>
-      <Name>MySpider.Common</Name>
+    <ProjectReference Include="..\MySpider.DAL.Model\MySpider.DAL.Model.csproj">
+      <Project>{623b283b-49c4-4338-bf03-13e9bdbd3a76}</Project>
+      <Name>MySpider.DAL.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
