@@ -4,14 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParseMachine
+namespace MySpider.DAL
 {
-    interface ILink
+    public class Class1
     {
-        string NavigateUrl
-        { 
-            get;
-            set;
-        }
     }
 }

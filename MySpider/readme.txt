@@ -19,3 +19,13 @@ settings
 3. key="finishedPath"
 4. key="msmqName"
 5. key="result"
+
+
+
+fanjh(·®½¡ºº-ÍÚ¿Ó) 13:21:11
+http://www.henryfan.net/Product/Peanut
+fanjh(·®½¡ºº-ÍÚ¿Ó) 13:26:26
+http://www.ikende.com/SmarkData.aspx
+
+
+Peanut

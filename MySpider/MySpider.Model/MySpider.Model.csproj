@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IKende.com.core">
+      <HintPath>..\..\plug\Peanut1.0\IKende.com.core.dll</HintPath>
+    </Reference>
+    <Reference Include="Peanut">
+      <HintPath>..\..\plug\Peanut1.0\Peanut.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IWebSite.cs">
+      <Generator>Peaunt</Generator>
+    </Compile>
     <Compile Include="RuleModel.cs" />
     <Compile Include="UrlModel.cs" />
     <Compile Include="WebSiteModel.cs" />
