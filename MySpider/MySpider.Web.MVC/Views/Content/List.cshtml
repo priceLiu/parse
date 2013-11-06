@@ -1,0 +1,269 @@
+﻿@model System.Collections.Generic.List<MySpider.BLL.Model.ArticleModel>
+
+@{
+    ViewBag.Title = "Content List";
+}
+
+
+<style>
+
+    .entry-summary a {
+        background-color: #FFFFFF;
+        display: block;
+    }
+
+    .entry-summary span {
+        position: relative;
+    }
+
+    H1.entry-title {
+        font-weight:800;
+    }
+</style>
+
+
+<div id="outer" class="cf">
+        <div id="page" class="hfeed site container_8">
+
+            <header id="masthead" class="site-header cf" role="banner">
+
+                <div class="logo grid_2">
+                    <h1 class="site-title"><a href="http://demo.fabthemes.com/ajaxify/" title="Ajaxify" rel="home">Ajaxify</a></h1>
+                </div>
+                <form method="get" id="searchform" action="http://demo.fabthemes.com/ajaxify/" role="search">
+                    <label for="s" class="assistive-text">Search</label>
+                    <input type="text" class="field" name="s" value="" id="s" placeholder="Search &hellip;" />
+                    <input type="submit" class="submit" name="submit" id="searchsubmit" value="" />
+                </form>
+                <div class="grid_6">
+                    <div class="topnavi clearfix">
+                        <div id="submenu" class="menu-primary-container">
+                            <ul id="web2feel" class="sfmenu">
+                                <li id="menu-item-72" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-72"><a href="http://demo.fabthemes.com/ajaxify/category/finance/">Finance</a></li>
+                                <li id="menu-item-73" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-73"><a href="http://demo.fabthemes.com/ajaxify/category/religion/">Religion</a></li>
+                                <li id="menu-item-74" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-74"><a href="http://demo.fabthemes.com/ajaxify/category/sports/">Sports</a></li>
+                                <li id="menu-item-75" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-75"><a href="http://demo.fabthemes.com/ajaxify/category/business/">Business</a>
+                                    <ul class="sub-menu">
+                                        <li id="menu-item-77" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-77"><a href="http://demo.fabthemes.com/ajaxify/category/aciform/">Aciform</a></li>
+                                        <li id="menu-item-78" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-78"><a href="http://demo.fabthemes.com/ajaxify/category/asmodeus/">Asmodeus</a></li>
+                                    </ul>
+                                </li>
+                                <li id="menu-item-76" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-76"><a href="http://demo.fabthemes.com/ajaxify/category/politics/">Politics</a></li>
+                                <li id="menu-item-79" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-79"><a href="http://demo.fabthemes.com/ajaxify/category/entertainment/">Entertainment</a>
+                                    <ul class="sub-menu">
+                                        <li id="menu-item-81" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-81"><a href="http://demo.fabthemes.com/ajaxify/category/art/">Art</a></li>
+                                        <li id="menu-item-80" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-80"><a href="http://demo.fabthemes.com/ajaxify/category/vintage/">Vintage</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+            </header>
+            <!-- #masthead .site-header -->
+
+            <div id="main" class="site-main cf">
+                <div id="primary" class="content-area grid_6">
+                    <div id="content" class="site-content cf" role="main">
+
+
+                        @foreach (MySpider.BLL.Model.ArticleModel item in Model)
+                        {
+                            <article id="post-69" class="post-70 post type-post status-publish format-standard hentry category-arrangement category-art category-business cf">
+                                <div class="leftbox">
+                                    <div class="datebox">
+                                        <div class="ddate">10</div>
+                                        <div class="dmonth">June</div>
+                                    </div>
+                                    <div class="post-author">
+                                        Posted by <a href="#" title="Posts by admin" rel="author">@Html.Label(item.Posted)</a>
+                                    </div>
+                                    <div class="post-comments">
+                                        <a href="#" title="Comment on Praesent sapien velit">0 Comments</a>
+                                    </div>
+                                    <div class="post-cats">
+                                        Posted in <a href="#" title="View all posts in Arrangement" rel="category tag">Arrangement</a>, <a href="http://demo.fabthemes.com/ajaxify/category/art/" title="View all posts in Art" rel="category tag">Art</a>, <a href="http://demo.fabthemes.com/ajaxify/category/business/" title="View all posts in Business" rel="category tag">Business</a>
+                                    </div>
+                                </div>
+                                <div class="rightbox">
+                                    <a href="http://demo.fabthemes.com/ajaxify/2012/06/10/praesent-sapien-velit/">
+                                        @Html.Raw(string.Format("<img class='postimg' src='{0}'  />", item.ImgLink.Src.Replace("_120.jpg","")))</a>
+                                    <header class="entry-header">
+                                        <h1 class="entry-title">@Html.Raw(item.Title)</h1>
+                                    </header>
+                                    <!-- .entry-header -->
+
+                                    <div class="entry-summary">
+                                        <p>@Html.Raw(item.Summary)</p>
+                                    </div>
+                                    <!-- .entry-summary -->
+                                </div>
+                            </article>
+                        }
+
+
+
+                        <div class="pagination">
+                            <span class='page-numbers current'>1</span>
+                            <a class='page-numbers' href='http://demo.fabthemes.com/ajaxify/page/2/'>2</a>
+                            <a class='page-numbers' href='http://demo.fabthemes.com/ajaxify/page/3/'>3</a>
+                            <a class="next page-numbers" href="http://demo.fabthemes.com/ajaxify/page/2/">Next &raquo;</a>
+                        </div>
+
+
+
+                    </div>
+                    <!-- #content .site-content -->
+                </div>
+                <!-- #primary .content-area -->
+
+                <div id="secondary" class="widget-area grid_2" role="complementary">
+                    <div class="corner"></div>
+                    <aside id="categories-2" class="widget widget_categories">
+                        <h1 class="widget-title">Categories</h1>
+                        <ul>
+                            <li class="cat-item cat-item-2"><a href="http://demo.fabthemes.com/ajaxify/category/aciform/" title="View all posts filed under Aciform">Aciform</a>
+                            </li>
+                            <li class="cat-item cat-item-3"><a href="http://demo.fabthemes.com/ajaxify/category/arrangement/" title="View all posts filed under Arrangement">Arrangement</a>
+                            </li>
+                            <li class="cat-item cat-item-4"><a href="http://demo.fabthemes.com/ajaxify/category/art/" title="View all posts filed under Art">Art</a>
+                            </li>
+                            <li class="cat-item cat-item-5"><a href="http://demo.fabthemes.com/ajaxify/category/asmodeus/" title="View all posts filed under Asmodeus">Asmodeus</a>
+                            </li>
+                            <li class="cat-item cat-item-6"><a href="http://demo.fabthemes.com/ajaxify/category/books/" title="View all posts filed under Books">Books</a>
+                            </li>
+                            <li class="cat-item cat-item-7"><a href="http://demo.fabthemes.com/ajaxify/category/business/" title="View all posts filed under Business">Business</a>
+                            </li>
+                            <li class="cat-item cat-item-8"><a href="http://demo.fabthemes.com/ajaxify/category/entertainment/" title="View all posts filed under Entertainment">Entertainment</a>
+                            </li>
+                            <li class="cat-item cat-item-9"><a href="http://demo.fabthemes.com/ajaxify/category/finance/" title="View all posts filed under Finance">Finance</a>
+                            </li>
+                            <li class="cat-item cat-item-10"><a href="http://demo.fabthemes.com/ajaxify/category/politics/" title="View all posts filed under Politics">Politics</a>
+                            </li>
+                            <li class="cat-item cat-item-11"><a href="http://demo.fabthemes.com/ajaxify/category/religion/" title="View all posts filed under Religion">Religion</a>
+                            </li>
+                            <li class="cat-item cat-item-12"><a href="http://demo.fabthemes.com/ajaxify/category/sports/" title="View all posts filed under Sports">Sports</a>
+                            </li>
+                            <li class="cat-item cat-item-1"><a href="http://demo.fabthemes.com/ajaxify/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
+                            </li>
+                            <li class="cat-item cat-item-13"><a href="http://demo.fabthemes.com/ajaxify/category/vintage/" title="View all posts filed under Vintage">Vintage</a>
+                            </li>
+                        </ul>
+                    </aside>
+                    <aside id="archives-2" class="widget widget_archive">
+                        <h1 class="widget-title">Archives</h1>
+                        <ul>
+                            <li><a href='http://demo.fabthemes.com/ajaxify/2012/06/' title='June 2012'>June 2012</a></li>
+                        </ul>
+                    </aside>
+                    <div class="squarebanner cf">
+                        <h3 class="sidetitl">Sponsors </h3>
+                        <ul class="cf">
+
+
+                            <li>
+                                <a rel="nofollow" href="http://www.webhostinghub.com/ " title="Web Hosting Hub - Cheap reliable web hosting.">
+                                    <img src="http://web2feel.com/images/webhostinghub.png" alt="Cheap reliable web hosting from WebHostingHub.com" style="vertical-align: bottom;" /></a>
+                            </li>
+
+                            <li>
+                                <a rel="nofollow" href="http://www.pcnames.com/" title="PC Names - Domain name search and availability check.">
+                                    <img src="http://web2feel.com/images/pcnames.png" alt="Domain name search and availability check by PCNames.com" style="vertical-align: bottom;" /></a>
+                            </li>
+
+                            <li>
+                                <a rel="nofollow" href="http://www.designcontest.com/" title="Design Contest - Logo and website design contests.">
+                                    <img src="http://web2feel.com/images/designcontest.png" alt="Website and logo design contests at DesignContest.com." style="vertical-align: bottom;" /></a>
+                            </li>
+
+                            <li>
+                                <a rel="nofollow" href="http://webhostingrating.com" title="Web Hosting Rating - Customer reviews of the best web hosts">
+                                    <img src="http://web2feel.com/images/webhostingrating.png" alt="Reviews of the best cheap web hosting providers at WebHostingRating.com" style="vertical-align: bottom;" /></a>
+                            </li>
+
+
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- #secondary .widget-area -->
+
+            </div>
+            <!-- #main .site-main -->
+
+            <div id="bottom" class="container_8">
+                <ul>
+
+                    <li class="botwid grid_2 widget_text">
+                        <h3 class="bothead">About Us</h3>
+                        <div class="textwidget">
+                            <p>Donec a imperdiet metus. Nunc id consectetur velit. Vestibulum et urna neque, eget tempus libero. Suspendisse ac neque eu nisi viverra blandit? Sed in urna at purus cursus adipiscing. Maecenas ac nibh odio, quis dictum dolor. Maecenas id velit eu velit tempor dapibus sed non tellus. Nulla quis nisi a turpis auctor volutpat. In moll</p>
+                        </div>
+                    </li>
+                    <li class="botwid grid_2 widget_recent_entries">
+                        <h3 class="bothead">Recent Posts</h3>
+                        <ul>
+                            <li>
+                                <a href="http://demo.fabthemes.com/ajaxify/2012/06/10/praesent-sapien-velit/" title="Praesent sapien velit">Praesent sapien velit</a>
+                            </li>
+                            <li>
+                                <a href="http://demo.fabthemes.com/ajaxify/2012/06/09/aenean-velit-risus-venenatis-sed-pellentesque-ege/" title="Aenean velit risus, venenatis sed pellentesque ege">Aenean velit risus, venenatis sed pellentesque ege</a>
+                            </li>
+                            <li>
+                                <a href="http://demo.fabthemes.com/ajaxify/2012/06/09/phasellus-justo-quam-commodo-sit-amet-pharetra/" title="Phasellus justo quam, commodo sit amet pharetra">Phasellus justo quam, commodo sit amet pharetra</a>
+                            </li>
+                            <li>
+                                <a href="http://demo.fabthemes.com/ajaxify/2012/06/09/cras-ullamcorper-imperdiet-sapien-semper-ultrices/" title="Cras ullamcorper imperdiet sapien semper ultrices">Cras ullamcorper imperdiet sapien semper ultrices</a>
+                            </li>
+                            <li>
+                                <a href="http://demo.fabthemes.com/ajaxify/2012/06/09/suspendisse-pellentesque-enim-id-consequat-luctus/" title="Suspendisse pellentesque, enim id consequat luctus">Suspendisse pellentesque, enim id consequat luctus</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="botwid grid_2 widget_recent_comments">
+                        <h3 class="bothead">Recent Comments</h3>
+                        <ul id="recentcomments">
+                            <li class="recentcomments">Jinsona on <a href="http://demo.fabthemes.com/ajaxify/2012/06/09/cras-ullamcorper-imperdiet-sapien-semper-ultrices/#comment-4">Cras ullamcorper imperdiet sapien semper ultrices</a></li>
+                            <li class="recentcomments">Jinsona on <a href="http://demo.fabthemes.com/ajaxify/2012/06/09/aenean-velit-risus-venenatis-sed-pellentesque-ege/#comment-6">Aenean velit risus, venenatis sed pellentesque ege</a></li>
+                            <li class="recentcomments">Jinsona on <a href="http://demo.fabthemes.com/ajaxify/2012/06/09/phasellus-justo-quam-commodo-sit-amet-pharetra/#comment-5">Phasellus justo quam, commodo sit amet pharetra</a></li>
+                            <li class="recentcomments">Jinsona on <a href="http://demo.fabthemes.com/ajaxify/2012/06/09/suspendisse-pellentesque-enim-id-consequat-luctus/#comment-3">Suspendisse pellentesque, enim id consequat luctus</a></li>
+                            <li class="recentcomments"><a href='http://wordpress.org/' rel='external nofollow' class='url'>Mr WordPress</a> on <a href="http://demo.fabthemes.com/ajaxify/2012/06/09/hello-world-2/#comment-2">Hello world!</a></li>
+                        </ul>
+                    </li>
+                    <li class="botwid grid_2 widget_meta">
+                        <h3 class="bothead">Meta</h3>
+                        <ul>
+                            <li><a href="http://demo.fabthemes.com/ajaxify/wp-login.php">Log in</a></li>
+                            <li><a href="http://demo.fabthemes.com/ajaxify/feed/" title="Syndicate this site using RSS 2.0">Entries
+                                <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+                            <li><a href="http://demo.fabthemes.com/ajaxify/comments/feed/" title="The latest comments to all posts in RSS">Comments
+                                <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+                            <li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="clear"></div>
+            </div>
+
+            <footer id="colophon" class="site-footer" role="contentinfo">
+                <div class="site-info">
+                    <div class="fcred">
+                        Copyright &copy; 2013 <a href="http://demo.fabthemes.com/ajaxify" title="Ajaxify">Ajaxify</a> - Just another demo Sites site.<br />
+                        | <a href="http://topwpthemes.com/Ajaxify/">Ajaxify Theme</a>
+                    </div>
+
+                </div>
+                <!-- .site-info -->
+            </footer>
+            <!-- #colophon .site-footer -->
+        </div>
+        <!-- #page .hfeed .site -->
+    </div>
+    <script type='text/javascript' src='http://cdn.demo.fabthemes.com/ajaxify/wp-content/themes/Ajaxify/js/jquery.ba-hashchange.min.js?ver=3.6.1'></script>
+    <script type='text/javascript' src='http://cdn.demo.fabthemes.com/ajaxify/wp-content/themes/Ajaxify/js/ajaxing.js?ver=3.6.1'></script>
+    <script type='text/javascript' src='http://cdn.demo.fabthemes.com/ajaxify/wp-content/themes/Ajaxify/js/superfish.js?ver=20120206'></script>
+    <script type='text/javascript' src='http://cdn.demo.fabthemes.com/ajaxify/wp-content/themes/Ajaxify/js/custom.js?ver=20120206'></script>
+    <script type='text/javascript' src='http://cdn.demo.fabthemes.com/ajaxify/wp-content/plugins/cart66-lite/js/cart66-library.js?ver=1.5.1.15'></script>
