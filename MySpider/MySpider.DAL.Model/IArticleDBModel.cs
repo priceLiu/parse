@@ -11,6 +11,7 @@ namespace MySpider.DAL.Model
     interface IArticleDBModel
     {
         [ID]
+        [IDENTITY]
         int Id
         {
             get;

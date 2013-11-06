@@ -13,24 +13,27 @@ namespace ParseMachine
             HtmlDocument document = new HtmlDocument();
             List<Article> articles = new List<Article>();
 
+            int i = 0;
+
             foreach (HtmlNode item in categoryNodeList)
             {
                 Article article = new Article();
-                article.Title = item.SelectNodes(websiteModel.Rule.TitleXPath)[0].OuterHtml;
-                article.Type = Tools.ConvertType(item.SelectNodes(websiteModel.Rule.TypeXPath)[0].InnerHtml);
+                article.Title = item.SelectNodes(websiteModel.Rule.TitleXPath)[i].OuterHtml;
+                article.Type = Tools.ConvertType(item.SelectNodes(websiteModel.Rule.TypeXPath)[i].InnerHtml);
                 article.IsRecommend = item.SelectNodes(websiteModel.Rule.RecomendXPath) != null;
-                article.Summary = item.SelectNodes(websiteModel.Rule.SummaryXPath)[0].OuterHtml;
-                article.Created = Convert.ToDateTime(item.SelectNodes(websiteModel.Rule.CreatedXPath)[0].InnerHtml);
+                article.Summary = item.SelectNodes(websiteModel.Rule.SummaryXPath)[i].OuterHtml;
+                article.Created = Convert.ToDateTime(item.SelectNodes(websiteModel.Rule.CreatedXPath)[i].InnerHtml);
                 
                 ImgLink img = new ImgLink();
-                img.Src = item.SelectNodes(websiteModel.Rule.ImageXPath)[0].Attributes[ImgLink.Attributes.SRC.ToString()].Value;
+                img.Src = item.SelectNodes(websiteModel.Rule.ImageXPath)[i].Attributes[ImgLink.Attributes.SRC.ToString()].Value;
                 img.NavigateUrl = string.Empty;
-                img.Alt = item.SelectNodes(websiteModel.Rule.ImageXPath)[0].Attributes[ImgLink.Attributes.ALT.ToString()] == null
-                        ? string.Empty : item.SelectNodes(websiteModel.Rule.ImageXPath)[0].Attributes[ImgLink.Attributes.ALT.ToString()].Value;
+                img.Alt = item.SelectNodes(websiteModel.Rule.ImageXPath)[i].Attributes[ImgLink.Attributes.ALT.ToString()] == null
+                        ? string.Empty : item.SelectNodes(websiteModel.Rule.ImageXPath)[i].Attributes[ImgLink.Attributes.ALT.ToString()].Value;
 
                 article.ImgLink = img;
-
                 articles.Add(article);
+
+                i++;
             }
 
             return articles;

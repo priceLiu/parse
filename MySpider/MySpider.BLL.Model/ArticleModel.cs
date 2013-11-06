@@ -20,6 +20,54 @@ namespace MySpider.BLL.Model
             get;
             set;
         }
+
+        public string Title
+        {
+            get;
+            set;
+        }
+
+        public string Summary
+        {
+            get;
+            set;
+        }
+
+        public bool IsRecommend
+        {
+            get;
+            set;
+        }
+
+        public string NavUrl
+        {
+            get;
+            set;
+        }
+
+        public int StarCount
+        {
+            get;
+            set;
+        }
+
+        public int BrowsedCount
+        {
+            get;
+            set;
+        }
+
+        public string Posted
+        {
+            get;
+            set;
+        }
+
+        public DateTime Created
+        {
+            get;
+            set;
+        }
     }
 
     public enum ArticleType

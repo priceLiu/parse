@@ -46,3 +46,17 @@ E:\github\parse\MySpider\MySpider.Web.MVC\bin\DotNetOpenAuth.OpenId.xml
 E:\github\parse\MySpider\MySpider.Web.MVC\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 E:\github\parse\MySpider\MySpider.Web.MVC\obj\Debug\MySpider.Web.MVC.dll
 E:\github\parse\MySpider\MySpider.Web.MVC\obj\Debug\MySpider.Web.MVC.pdb
+E:\github\parse\MySpider\MySpider.Web.MVC\bin\MySpider.BLL.dll
+E:\github\parse\MySpider\MySpider.Web.MVC\bin\MySpider.BLL.Model.dll
+E:\github\parse\MySpider\MySpider.Web.MVC\bin\MySpider.Common.dll
+E:\github\parse\MySpider\MySpider.Web.MVC\bin\Newtonsoft.Json.Net35.dll
+E:\github\parse\MySpider\MySpider.Web.MVC\bin\MySpider.Constant.Mgt.dll
+E:\github\parse\MySpider\MySpider.Web.MVC\bin\MySpider.BLL.Model.pdb
+E:\github\parse\MySpider\MySpider.Web.MVC\bin\MySpider.BLL.pdb
+E:\github\parse\MySpider\MySpider.Web.MVC\bin\MySpider.Common.pdb
+E:\github\parse\MySpider\MySpider.Web.MVC\bin\MySpider.Constant.Mgt.pdb
+E:\github\parse\MySpider\MySpider.Web.MVC\obj\Debug\MySpider.Web.MVC.csprojResolveAssemblyReference.cache
+E:\github\parse\MySpider\MySpider.Web.MVC\bin\MySpider.DAL.Model.dll
+E:\github\parse\MySpider\MySpider.Web.MVC\bin\Peanut.dll
+E:\github\parse\MySpider\MySpider.Web.MVC\bin\IKende.com.core.dll
+E:\github\parse\MySpider\MySpider.Web.MVC\bin\MySpider.DAL.Model.pdb

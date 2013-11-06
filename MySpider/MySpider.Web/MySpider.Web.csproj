@@ -197,6 +197,46 @@
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
     <Content Include="packages.config" />
+    <Content Include="ShowOne\00_Activison_COD_BlackOPsII_p_2x3_2x3.jpg" />
+    <Content Include="ShowOne\00_Capcom_SuperStreetFighter4_p_1x2_1x2.jpg" />
+    <Content Include="ShowOne\00_Greengate_p_2x3_2x3.jpg" />
+    <Content Include="ShowOne\00_Nike_EnglandFootball_p_2x3_2x3.jpg" />
+    <Content Include="ShowOne\00_Nike_LunarEclipse_p_1x2_1x2.jpg" />
+    <Content Include="ShowOne\00_Nike_UK_Headquarters_Refresh_2x2_p_2x2.jpg" />
+    <Content Include="ShowOne\00_Punkt_Brand_p_2x2_2x2.jpg" />
+    <Content Include="ShowOne\00_Uniqlo_UltraLightDown_p_2x2_2x2.jpg" />
+    <Content Include="ShowOne\587f9dcb84002ee9ead3a2e992d0441a.js" />
+    <Content Include="ShowOne\6d932c6d3659fa6e46a54a2c08700f2e.css" />
+    <Content Include="ShowOne\ajaxify.js" />
+    <Content Include="ShowOne\commonutilstats.js" />
+    <Content Include="ShowOne\Container.js" />
+    <Content Include="ShowOne\controls.js" />
+    <Content Include="ShowOne\Copy of Controller.js" />
+    <Content Include="ShowOne\css.css" />
+    <Content Include="ShowOne\e481a808-dc72-4ace-899e-8f58f46d856f.htm" />
+    <Content Include="ShowOne\fonts.css" />
+    <Content Include="ShowOne\ga.js" />
+    <Content Include="ShowOne\injected.css" />
+    <Content Include="ShowOne\jquery-ui.js" />
+    <Content Include="ShowOne\jquery.js" />
+    <Content Include="ShowOne\logo.png" />
+    <Content Include="ShowOne\main.js" />
+    <Content Include="ShowOne\mapgeocodergeometrydirections.js" />
+    <Content Include="ShowOne\onioninfowindowmarker.js" />
+    <Content Include="ShowOne\RL2100_RLWeb_News_Article_Images_01_thumbnail.jpg" />
+    <Content Include="ShowOne\RL_14th_Birthday_t_thumbnail.jpg" />
+    <Content Include="ShowOne\RL_AOR__t_copy_thumbnail.jpg" />
+    <Content Include="ShowOne\RL_Barbour_t_2_thumbnail.jpg" />
+    <Content Include="ShowOne\RL_BV_Tent_t_thumbnail.jpg" />
+    <Content Include="ShowOne\RL_DAD2__t_thumbnail.jpg" />
+    <Content Include="ShowOne\RL_Uniqlo_Airism_t_thumbnail.jpg" />
+    <Content Include="ShowOne\RL_Unqilo_CandB_t_1_thumbnail.jpg" />
+    <Content Include="ShowOne\submit.png" />
+    <Content Include="ShowOne\Trim_Website_t_thumbnail.jpg" />
+    <Content Include="ShowOne\Uniqlo_Greengate_t_thumbnail.jpg" />
+    <Content Include="WebForm1.aspx" />
+    <Content Include="WebForm2.aspx" />
+    <Content Include="WebForm3.aspx" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -301,6 +341,27 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm3.aspx.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm3.aspx.designer.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -310,6 +371,7 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ShowOne\js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -36,6 +36,7 @@ namespace MySpider.DAL.Model
         ///Type:int
         ///</summary>
         [ID()]
+        [IDENTITY]
         public virtual int Id
         {
             get
