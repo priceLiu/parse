@@ -43,7 +43,7 @@ namespace MySpider.Manager
                         msg.RuleFileName = dataFilePath;
                         msg.DownloadedFileName = targetPath;
 
-                        SendMsg(msg);
+                        MSMQManager.InstanceLocalComputer.Send(msg, new BinaryMessageFormatter());
                     }
                 }
                 catch (Exception ex)
@@ -58,11 +58,6 @@ namespace MySpider.Manager
         private void MoveDataFile(string sourceFileName, string destFileName)
         {
             FileHelper.MoveTo(sourceFileName, destFileName);
-        }
-
-        public void SendMsg<T>(T msgContent)
-        {
-            MSMQManager.InstanceLocalComputer.Send(msgContent, new BinaryMessageFormatter());
         }
     }
 }

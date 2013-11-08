@@ -122,7 +122,6 @@ namespace MySpider.Manager
                             string tempContent = System.IO.File.ReadAllText(contentFileName, Encoding.UTF8);
                             List<Article> articles = yongche.ParseArticle(tempContent, parseModel);
 
-
                             string result = JsonHelper.Serializer<List<Article>>(articles);
 
                             //TODO: save parse data

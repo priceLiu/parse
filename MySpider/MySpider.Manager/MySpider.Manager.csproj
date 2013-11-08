@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CrawlManager.cs" />
+    <Compile Include="DataWarehouseManager.cs" />
     <Compile Include="ParseThreadMgt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
