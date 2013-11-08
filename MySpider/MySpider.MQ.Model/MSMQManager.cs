@@ -18,10 +18,9 @@ namespace MySpider.MQ.Model
         #region 字段与属性
         private MessageQueue _msmq = null;
         private string _path;
-     
-        private static MSMQManager _instanceLocalComputer = new MSMQManager(true);
-
         private string msmqName = AppSetting.Value.MSMQName;
+
+        private static MSMQManager _instanceLocalComputer = new MSMQManager(true);
         /// <summary>
         /// 本机消息队列实例
         /// </summary>
@@ -81,7 +80,6 @@ namespace MySpider.MQ.Model
 
             _msmq = new MessageQueue(_path);
         }
-
 
         /// <summary>
         /// 发送消息队列
