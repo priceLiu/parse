@@ -15,6 +15,7 @@ namespace MySpider.BLL.Test
         public void InsertTest()
         {
             ArticleManager manager = new ArticleManager();
+
             MySpider.DAL.Model.ArticleDBModel item = manager.ConvertToDalModel(new MySpider.BLL.Model.ArticleModel
             {
                 Title = "tt",
