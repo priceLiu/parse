@@ -1,0 +1,78 @@
+﻿@model MySpider.Model.WebSiteModel
+
+<section id="frmWebSiteEdit">
+    <h2>输入需要采集的网站信息.</h2>
+    @using (Html.BeginForm("AddWebSite","Edit"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>Website information Form</legend>
+            <ul>
+                @Html.Label("来源网址")
+                @Html.TextBoxFor(m => m.SourceAddress)
+            </ul>
+
+            <dl>
+                <dt>@Html.Label("article xPath")</dt>
+                <dd>@Html.TextBoxFor(m => m.Rule.ArticleXPath)</dd>
+            </dl>
+            
+            <dl>
+                <dt>@Html.Label("created xPath")</dt>
+                <dd>@Html.TextBoxFor(m => m.Rule.CreatedXPath)</dd>
+            </dl>
+
+            <dl>
+                <dt>@Html.Label("image xPath")</dt>
+                <dd>@Html.TextBoxFor(m => m.Rule.ImageXPath)</dd>
+            </dl>
+
+            <dl>
+                <dt>@Html.Label("recomend xPath")</dt>
+                <dd>@Html.TextBoxFor(m => m.Rule.RecomendXPath)</dd>
+            </dl>
+
+            <dl>
+                <dt>@Html.Label("summary xPath")</dt>
+                <dd>@Html.TextBoxFor(m => m.Rule.SummaryXPath)</dd>
+            </dl>
+
+            <dl>
+                <dt>@Html.Label("title xPath")</dt>
+                <dd>@Html.TextBoxFor(m => m.Rule.TitleXPath)</dd>
+            </dl>
+
+            <dl>
+                <dt>@Html.Label("article type xPath")</dt>
+                <dd>@Html.TextBoxFor(m => m.Rule.TypeXPath)</dd>
+            </dl>
+            
+            <a onclick="AddUrl(this);">add url</a>
+
+            <ol id="olImgUrls">
+            </ol>
+            <input type="submit" value="Log in" />
+        </fieldset>
+        <p>
+            @Html.ActionLink("Register", "Register") if you don't have an account.
+        </p>
+    }
+</section>
+<script>
+    var i = 1;
+
+    function AddUrl(obj) {
+        var tmp = 'img' + i;
+        $(obj).next().append('<li><input type="text" id="' + tmp + '" name="' + tmp + '" /><a>删除</a></li>');
+        i++;
+    }
+
+    $(window).load(function () {
+        $('#olImgUrls > li > a').live('click', function () {
+            $(this).parent().remove();
+        });
+    });
+
+</script>
