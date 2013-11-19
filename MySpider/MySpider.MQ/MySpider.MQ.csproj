@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{55DF701F-F1B2-48AB-AA0D-D68CC5D6D38A}</ProjectGuid>
+    <ProjectGuid>{628BBF5A-E972-42CC-BA56-05C7CC71EB1F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MySpider.Manager</RootNamespace>
-    <AssemblyName>MySpider.Manager</AssemblyName>
+    <RootNamespace>MySpider.MQ</RootNamespace>
+    <AssemblyName>MySpider.MQ</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,9 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Messaging" />
-    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,39 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CrawlManager.cs" />
-    <Compile Include="DataWarehouseManager.cs" />
-    <Compile Include="ParseThreadMgt.cs" />
+    <Compile Include="CrawlJob.cs" />
+    <Compile Include="SpiderQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MySpider.Common\MySpider.Common.csproj">
-      <Project>{560c9552-23e8-416b-bbbf-00e49fbdce0d}</Project>
-      <Name>MySpider.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MySpider.Constant.Mgt\MySpider.Constant.Mgt.csproj">
       <Project>{cceaa949-d18b-4253-bafa-491ada43db64}</Project>
       <Name>MySpider.Constant.Mgt</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MySpider.Model.Manager\MySpider.Model.Manager.csproj">
-      <Project>{9233d394-2d13-4fe7-be3e-4ad8355bade4}</Project>
-      <Name>MySpider.Model.Manager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MySpider.Model\MySpider.Model.csproj">
-      <Project>{e46cb96b-1ac0-49fd-80bd-0a07cbc0200c}</Project>
-      <Name>MySpider.Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MySpider.MQ.Model\MySpider.MQ.Model.csproj">
       <Project>{f6f524c5-58d5-466c-8911-1d13a34ff3c5}</Project>
       <Name>MySpider.MQ.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MySpider.MQ\MySpider.MQ.csproj">
-      <Project>{628bbf5a-e972-42cc-ba56-05c7cc71eb1f}</Project>
-      <Name>MySpider.MQ</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ParseMachine\ParseMachine.csproj">
-      <Project>{e6f7145e-a19b-4eb9-b77e-f300fb9fb190}</Project>
-      <Name>ParseMachine</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

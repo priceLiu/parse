@@ -28,7 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpider.Web", "MySpider.Web\MySpider.Web.csproj", "{753623FD-9203-4562-A134-4BE5EED0DB9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpider.Web.MVC", "MySpider.Web.MVC\MySpider.Web.MVC.csproj", "{5094A601-D719-4CF4-A69A-D43E881375BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpider.MVC.Web", "MySpider.Web.MVC\MySpider.MVC.Web.csproj", "{5094A601-D719-4CF4-A69A-D43E881375BB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpider.Manager", "MySpider.Manager\MySpider.Manager.csproj", "{55DF701F-F1B2-48AB-AA0D-D68CC5D6D38A}"
 EndProject
@@ -43,6 +43,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpider.DAL", "MySpider.DAL\MySpider.DAL.csproj", "{7BF85AE9-1947-4DAD-8275-9ADE50754EA0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpider.BLL.Test", "MySpider.BLL.Test\MySpider.BLL.Test.csproj", "{1D3B4953-5B9C-47E9-8398-5011DDDFB9AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpider.MVC.Mgt", "MySpider.MVC.Mgt\MySpider.MVC.Mgt.csproj", "{0B5EA3A2-7D46-4F94-8C27-BB0C683B6411}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpider.MQ", "MySpider.MQ\MySpider.MQ.csproj", "{628BBF5A-E972-42CC-BA56-05C7CC71EB1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -126,6 +130,14 @@ Global
 		{1D3B4953-5B9C-47E9-8398-5011DDDFB9AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D3B4953-5B9C-47E9-8398-5011DDDFB9AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D3B4953-5B9C-47E9-8398-5011DDDFB9AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B5EA3A2-7D46-4F94-8C27-BB0C683B6411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B5EA3A2-7D46-4F94-8C27-BB0C683B6411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B5EA3A2-7D46-4F94-8C27-BB0C683B6411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B5EA3A2-7D46-4F94-8C27-BB0C683B6411}.Release|Any CPU.Build.0 = Release|Any CPU
+		{628BBF5A-E972-42CC-BA56-05C7CC71EB1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{628BBF5A-E972-42CC-BA56-05C7CC71EB1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{628BBF5A-E972-42CC-BA56-05C7CC71EB1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{628BBF5A-E972-42CC-BA56-05C7CC71EB1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

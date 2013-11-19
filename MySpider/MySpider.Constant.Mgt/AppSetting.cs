@@ -16,6 +16,7 @@ namespace MySpider.Constant.Mgt
             public const string FINISHED_PATH = "finishedPath";
             public const string MSMQ_NAME = "msmqName";
             public const string RESULT_ROOT = "resultRoot";
+            public const string MSMQ_CRAWL_QUEUE = "crawlqueue";
         }
 
         public class Value
@@ -24,6 +25,7 @@ namespace MySpider.Constant.Mgt
             public static string ParseRoot = ConfigurationManager.AppSettings[Key.PARSE_ROOT].ToString();
             public static string FinishedPath = ConfigurationManager.AppSettings[Key.FINISHED_PATH].ToString();
             public static string MSMQName = ConfigurationManager.AppSettings[Key.MSMQ_NAME].ToString();
+            public static string MSMQ_CRAWL_QUEUE = ConfigurationManager.AppSettings[Key.MSMQ_CRAWL_QUEUE].ToString();
             public static string ResultRoot = ConfigurationManager.AppSettings[Key.RESULT_ROOT].ToString();
         }
     }

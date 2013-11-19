@@ -1,6 +1,7 @@
 ﻿using MySpider.Common;
 using MySpider.Model;
 using MySpider.Model.Manager;
+using MySpider.MQ;
 using MySpider.MQ.Model;
 using ParseMachine;
 using System;
@@ -43,7 +44,10 @@ namespace MySpider.Manager
                         msg.RuleFileName = dataFilePath;
                         msg.DownloadedFileName = targetPath;
 
-                        MSMQManager.InstanceLocalComputer.Send(msg, new BinaryMessageFormatter());
+                        CrawlJob job = new CrawlJob();
+                        job.Send(msg);
+
+                        //MSMQManager.InstanceLocalComputer.Send(msg, new BinaryMessageFormatter());
                     }
                 }
                 catch (Exception ex)
@@ -52,7 +56,7 @@ namespace MySpider.Manager
                 }
             }
 
-            MSMQManager.InstanceLocalComputer.Dispose();
+            //MSMQManager.InstanceLocalComputer.Dispose();
         }
 
         private void MoveDataFile(string sourceFileName, string destFileName)

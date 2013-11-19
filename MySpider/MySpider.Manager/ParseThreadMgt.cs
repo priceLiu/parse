@@ -10,6 +10,7 @@ using System.Messaging;
 using System.Text;
 using System.Threading;
 using MySpider.Constant.Mgt;
+using MySpider.MQ;
 
 namespace MySpider.Manager
 {
@@ -27,7 +28,7 @@ namespace MySpider.Manager
             set { ParseThreadMgt._instance = value; }
         }
 
-        public string MSMQName = AppSetting.Value.MSMQName;
+        public string MSMQName = AppSetting.Value.MSMQ_CRAWL_QUEUE;
 
         public void Start()
         {
@@ -42,14 +43,28 @@ namespace MySpider.Manager
         private void StartReceiveMSMQThread()
         {
             _receiveMSMQThread = new Thread(new ThreadStart(ReceiveMSMQ));
-            _receiveMSMQThread.Name = "ReceiveThread";
+            _receiveMSMQThread.Name = "ReceiveCrawlThread";
             _receiveMSMQThread.IsBackground = true;
             _receiveMSMQThread.Start();
         }
 
         public void ReceiveMSMQ()
         {
-            MSMQManager.InstanceLocalComputer.Create(false);
+            ReceiveMSMQ(-1, new BinaryMessageFormatter());
+        }
+
+        public void ReceiveMSMQ(int timeoutSeconds, IMessageFormatter formatter)
+        {
+            CrawlJob job;
+
+            if (timeoutSeconds == -1)
+            {
+                 job = new CrawlJob(timeoutSeconds, formatter);
+            }
+            else
+            {
+                job = new CrawlJob();
+            }
 
             while (true)
             {
@@ -57,7 +72,12 @@ namespace MySpider.Manager
 
                 try
                 {
-                    obj = MSMQManager.InstanceLocalComputer.ReceiveBinaryMsg() as MSMQMsg;
+                    obj = job.Receive() as MSMQMsg;
+
+                    if (obj == null)
+                    {
+                        throw new NullReferenceException();
+                    }
 
                     string dataFileName = obj.RuleFileName;
                     string contentFileName = obj.DownloadedFileName;
@@ -73,9 +93,9 @@ namespace MySpider.Manager
 
                     FileInfo info = new FileInfo(contentFileName);
                     string resultPath = FileHelper.GenerateResultPath(parseModel.SourceAddress);
-                    
+
                     FileHelper.CreateDirectory(resultPath);
-                    
+
                     string resultFileName = FileHelper.GenerateResultFileName(contentFileName);
                     bool isSuccess = FileHelper.WriteTo(result, string.Format("{0}\\{1}", resultPath, resultFileName));
 
