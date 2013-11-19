@@ -17,6 +17,7 @@ namespace MySpider.Constant.Mgt
             public const string MSMQ_NAME = "msmqName";
             public const string RESULT_ROOT = "resultRoot";
             public const string MSMQ_CRAWL_QUEUE = "crawlqueue";
+            public const string MSMQ_DATA_PROCESS_QUEUE = "dataProcessQueue"
         }
 
         public class Value
@@ -27,6 +28,7 @@ namespace MySpider.Constant.Mgt
             public static string MSMQName = ConfigurationManager.AppSettings[Key.MSMQ_NAME].ToString();
             public static string MSMQ_CRAWL_QUEUE = ConfigurationManager.AppSettings[Key.MSMQ_CRAWL_QUEUE].ToString();
             public static string ResultRoot = ConfigurationManager.AppSettings[Key.RESULT_ROOT].ToString();
+            public static string MSMQ_DATA_PROCESS_QUEUE = ConfigurationManager.AppSettings[Key.MSMQ_DATA_PROCESS_QUEUE].ToString();
         }
     }
 }

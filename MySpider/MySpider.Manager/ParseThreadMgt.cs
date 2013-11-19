@@ -59,7 +59,7 @@ namespace MySpider.Manager
 
             if (timeoutSeconds == -1)
             {
-                 job = new CrawlJob(timeoutSeconds, formatter);
+                job = new CrawlJob(timeoutSeconds, formatter);
             }
             else
             {
@@ -81,6 +81,7 @@ namespace MySpider.Manager
 
                     string dataFileName = obj.RuleFileName;
                     string contentFileName = obj.DownloadedFileName;
+
                     //get website data file
                     WebSiteModel parseModel = WebSiteManager.GetSiteInfo(dataFileName);
 
@@ -89,27 +90,31 @@ namespace MySpider.Manager
                     string tempContent = System.IO.File.ReadAllText(contentFileName, Encoding.UTF8);
                     List<Article> articles = yongche.ParseArticle(tempContent, parseModel);
 
-                    string result = JsonHelper.Serializer<List<Article>>(articles);
-
-                    FileInfo info = new FileInfo(contentFileName);
                     string resultPath = FileHelper.GenerateResultPath(parseModel.SourceAddress);
-
                     FileHelper.CreateDirectory(resultPath);
-
                     string resultFileName = FileHelper.GenerateResultFileName(contentFileName);
-                    bool isSuccess = FileHelper.WriteTo(result, string.Format("{0}\\{1}", resultPath, resultFileName));
+                    string tmpName = string.Format("{0}\\{1}", resultPath, resultFileName);
+
+                    string result = JsonHelper.Serializer<List<Article>>(articles);
+                    bool isSuccess = FileHelper.WriteTo(result, tmpName);
 
                     //move to backup path
                     if (isSuccess)
                     {
                         string backupFileName = FileHelper.GenerateBackupFileName(contentFileName, parseModel.SourceAddress);
                         MovePaseFile(contentFileName, backupFileName);
+
+                        DataProcessMsg processMsg = new DataProcessMsg();
+                        processMsg.Path = tmpName;
+                        processMsg.SourceFileName = backupFileName;
+
+                        SendToDataProcess(processMsg);
                     }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(string.Format("error : {0}", ex.Message));
-                    LogHelper.WriteLog(string.Format("{0}; \r\n {1} msg = {2}", ex , Environment.NewLine, obj.ToString()));
+                    LogHelper.WriteLog(string.Format("{0}; \r\n {1} msg = {2}", ex, Environment.NewLine, obj.ToString()));
                 }
 
                 Thread.Sleep(100);
@@ -170,6 +175,12 @@ namespace MySpider.Manager
         private void MovePaseFile(string sourceFileName, string destFileName)
         {
             FileHelper.MoveTo(sourceFileName, destFileName);
+        }
+
+        private void SendToDataProcess(DataProcessMsg msg)
+        {
+            DataProcessJob process = new DataProcessJob();
+            process.Send(msg);
         }
 
         #region IDisposable Members
