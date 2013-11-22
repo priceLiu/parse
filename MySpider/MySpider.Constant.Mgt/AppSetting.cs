@@ -17,7 +17,7 @@ namespace MySpider.Constant.Mgt
             public const string MSMQ_NAME = "msmqName";
             public const string RESULT_ROOT = "resultRoot";
             public const string MSMQ_CRAWL_QUEUE = "crawlqueue";
-            public const string MSMQ_DATA_PROCESS_QUEUE = "dataProcessQueue"
+            public const string MSMQ_DATA_PROCESS_QUEUE = "dataProcessQueue";
         }
 
         public class Value

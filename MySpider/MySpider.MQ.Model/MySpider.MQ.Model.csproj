@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataProcessMsg.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="MSMQIndex.cs" />
     <Compile Include="MSMQManager.cs" />

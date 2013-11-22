@@ -13,6 +13,19 @@ namespace MySpider.MQ
         protected MessageQueue queue;
         protected TimeSpan timeout;
 
+        public int MessageCounts
+        {
+            get
+            {
+                if (queue != null)
+                {
+                    return queue.GetAllMessages().Count();
+                }
+
+                return 0;
+            }
+        }
+
         public SpiderQueue(string queuePath, int timeoutSeconds)
         {
             CreateQueue(queuePath);
